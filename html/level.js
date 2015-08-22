@@ -25,3 +25,7 @@ Level.prototype.draw = function()
 {
     ctx.drawImage(this.tiles.getPrerender(), 0, 0);
 }
+
+Level.prototype.tick = function()
+{
+}

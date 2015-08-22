@@ -1,13 +1,11 @@
 function MainGameState(level)
 {
-
     this.level = level;
-
 }
 
 MainGameState.prototype.render = function ()
 {
-    this.level.render();
+    this.level.draw();
 }
 
 MainGameState.prototype.tick = function()

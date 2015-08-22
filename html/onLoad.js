@@ -13,10 +13,6 @@ window.onload = function()
         width = canvas.width;
         height = canvas.height;
 
-        //gameState = new MainGameState();
-    
-        mouse = new mouseCoordinates(400, 300);
-
         loadTiles();
     }
     else
@@ -27,5 +23,8 @@ window.onload = function()
 
 function afterLoadTiles()
 {
+        gameState = new MainGameState(new Level(tilemaps[0], []));
+        mouse = new mouseCoordinates(400, 300);
+
         onFrame();
 }
