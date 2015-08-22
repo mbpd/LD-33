@@ -8,5 +8,5 @@ window.onload = function() {
     width = canvas.width;
     height = canvas.height;
 
-
+    onFrame();
 }
