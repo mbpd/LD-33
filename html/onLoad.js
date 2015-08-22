@@ -9,4 +9,10 @@ window.onload = function() {
     height = canvas.height;
 
     onFrame();
+
+    loadTiles();
+}
+
+function afterLoadTiles()
+{
 }
