@@ -1,19 +1,22 @@
-function MetroCutScene(metro, landscape)
+function MetroCutScene(metro, station, background)
 {
-        this.metro =  metro;
-        this.landscape = landscape;
+        this.metro = metro;
+        this.station = station;
+        this.background = background;
         this.counter = 0.0000001;
-        this.flag = false;
         this.DIST = 50000;
 }
 
 MetroCutScene.prototype.render = function ()
 {
 
-        console.log("render");
-        ctx.drawImage(this.landscape, 0, this.y);
-        ctx.drawImage(this.landscape, 0, this.y - this.DIST);
-        ctx.drawImage(this.metro, (width/2)-(this.metro.width/2), 0);
+    for(var i = 0; i < 7; i++) {
+        ctx.drawImage(this.background, 0, (this.y%100)-100 + i * 100);
+    }
+
+    ctx.drawImage(this.station, 0, this.y);
+    ctx.drawImage(this.station, 0, this.y - this.DIST);
+    ctx.drawImage(this.metro, (width/2), 100);
 
 }
 
@@ -22,12 +25,4 @@ MetroCutScene.prototype.tick = function()
     var t = Math.pow(this.counter, 5)/10;
     this.y = (Math.pow((1 + (1/t)), t)-1) * this.DIST / (Math.E-1);
     this.counter += 0.01;
-    if(this.y < 368)
-    console.log(this.y);
-}
-
-MetroCutScene.prototype.stop = function()
-{
-
-
 }

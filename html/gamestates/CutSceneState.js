@@ -24,5 +24,5 @@ CutSceneState.prototype.keyboardHandler = function(evt)
 
 CutSceneState.prototype.mouseHandler = function(evt)
 {
-    cutScene.stop();
+
 }
