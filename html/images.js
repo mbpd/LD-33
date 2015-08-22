@@ -18,7 +18,7 @@ function loadNextImage()
     current_image++;
 
     var img = new Image();
-    img.onload = loadNextImage();
+    img.onload = loadNextImage;
     img.src = BASE_IMAGE_URL + imagesToLoad[current_image-1] + ".png";
 
     images[imagesToLoad[current_image-1]] = img;
