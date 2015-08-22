@@ -7,7 +7,9 @@ width, height = image.size
 level_index = argv[1].split('/')[-1].split('.')[0][5:]
 
 red_to_tile = {
-    0: 1,
+    0: 2,
+    1: 1,
+    2: 3,
     255: 0
 }
 
