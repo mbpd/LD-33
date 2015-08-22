@@ -29,7 +29,7 @@ function afterLoadTiles()
 function afterLoadImages()
 {
     mouse = new mouseCoordinates(400, 300);
-    gameState = new MainGameState(new Level(tilemaps[0], []));
+    gameState = new CutSceneState(new MetroCutScene(images["metro"], images["landscape"]));
 
     onFrame();
 }
