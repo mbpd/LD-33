@@ -26,8 +26,7 @@ Level.prototype.draw = function()
 
     ctx.drawImage(this.tiles.getPrerender(), OFFSET_X, OFFSET_Y);
 
-    ctx.fillStyle = "#FF0000";
-    ctx.fillRect(400-32, 300-32, 64, 64);
+    this.player.draw();
 }
 
 Level.prototype.tick = function()

@@ -42,3 +42,15 @@ Player.prototype.tick = function(start)
     if(this.movingDown)
         this.y += this.MOVE_SPEED;
 }
+
+Player.prototype.draw = function()
+{
+    var jump = Math.round(currentFrame/7) % 3 == 0;
+
+    var charHeight = 0;
+    if(jump &&
+      (this.movingLeft + this.movingRight == 1 ||
+       this.movingUp   + this.movingDown))
+       charHeight = 5;
+    ctx.drawImage(images["stallman_right"], 400-24, 300-36 - charHeight);
+}
