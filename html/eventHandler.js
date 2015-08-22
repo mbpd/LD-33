@@ -14,8 +14,7 @@ function mouseCoordinates(x, y)
 
 window.addEventListener("keydown", function (e)
 {
-
-    gameState.keyboardHandler( new Event("KEY_DOWN", e.keyCode || e.charCode));
+    gameState.keyboardHandler(new Event("KEY_DOWN", e.keyCode || e.charCode));
 
 });
 

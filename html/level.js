@@ -4,10 +4,8 @@ function Level(tiles, entities)
     this.tiles.prerender();
 
     this.entities = entities;
-    this.people = [];
 
-    //this.player = new Player();
-    //this.people.push(player);
+    this.player = new Player();
 
     this.interactibles = [];
     this.npcs = [];
@@ -23,9 +21,21 @@ function Level(tiles, entities)
 
 Level.prototype.draw = function()
 {
-    ctx.drawImage(this.tiles.getPrerender(), 0, 0);
+    var OFFSET_X = -this.player.x - width/2;
+    var OFFSET_Y = -this.player.y - height/2;
+
+    ctx.drawImage(this.tiles.getPrerender(), OFFSET_X, OFFSET_Y);
+
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(400-32, 300-32, 64, 64);
 }
 
 Level.prototype.tick = function()
 {
+    this.player.tick();
+}
+
+Level.prototype.getPlayer = function()
+{
+    return this.player;
 }
