@@ -42,6 +42,8 @@ function Level(tilemap, entities, markers)
             this.interactibles.push(c4);
         }
     }
+
+    this.cursor = images.cursor_default;
 }
 
 Level.prototype.draw = function()
@@ -64,6 +66,14 @@ Level.prototype.draw = function()
 
 Level.prototype.tick = function()
 {
+    this.cursor = images.cursor_default;
+
+    for(var i = 0; i < this.interactibles.length; i++)
+    {
+        if(this.interactibles[i].canUse(mouse.x - width/2 + this.player.x, mouse.y - height/2 + this.player.y))
+            this.cursor = this.interactibles[i].cursor;
+    }
+
     this.player.tick();
 
     for(var i = 0; i < this.people.length; i++)
@@ -97,6 +107,11 @@ Level.prototype.tick = function()
         }
         this.people[i].setPositionAsValid();
     }
+}
+
+Level.prototype.getCursor = function()
+{
+    return this.cursor;
 }
 
 Level.prototype.getPlayer = function()

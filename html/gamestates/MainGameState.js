@@ -1,6 +1,7 @@
 function MainGameState(level)
 {
     this.level = level;
+    this.cursor = images.cursor_default;
 }
 
 MainGameState.prototype.render = function ()
@@ -11,6 +12,7 @@ MainGameState.prototype.render = function ()
 MainGameState.prototype.tick = function()
 {
     this.level.tick();
+    this.cursor = this.level.getCursor();
 }
 
 MainGameState.prototype.keyboardHandler = function(evt)

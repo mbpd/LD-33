@@ -6,12 +6,6 @@ function Event(type, data)
 
 }
 
-function mouseCoordinates(x, y)
-{
-    this.x = x;
-    this.y = y;
-}
-
 window.addEventListener("keydown", function (e)
 {
     gameState.keyboardHandler(new Event("KEY_DOWN", e.keyCode || e.charCode));
@@ -33,9 +27,16 @@ canvas.addEventListener("click", function(e)
 
 });
 
+function mouseCoordinates(x, y)
+{
+    this.x = x;
+    this.y = y;
+}
+
 canvas.addEventListener("mousemove", function(e)
 {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+    var rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;;
 
 });

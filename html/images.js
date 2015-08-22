@@ -4,6 +4,10 @@ var imagesToLoad = [
     "stallman_right",
     "stallman_left",
     "mark_c4",
+    "cursor_default",
+    "cursor_c4",
+    "cursor_use",
+    "cursor_talk",
 ]
 
 var images = {};
