@@ -23,8 +23,13 @@ window.onload = function()
 
 function afterLoadTiles()
 {
-        gameState = new MainGameState(new Level(tilemaps[0], []));
-        mouse = new mouseCoordinates(400, 300);
+    loadImages();
+}
 
-        onFrame();
+function afterLoadImages()
+{
+    mouse = new mouseCoordinates(400, 300);
+    gameState = new MainGameState(new Level(tilemaps[0], []));
+
+    onFrame();
 }
