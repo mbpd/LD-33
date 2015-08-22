@@ -13,11 +13,25 @@ red_to_tile = {
     255: 0
 }
 
-javascript_string = "tilemaps[" + level_index + "] = new TileMap(" + str(width) + "," + str(height) + ",["
+green_to_marker= {
+0: "SPAWN",
+1: "C4"
+}
+
+tilemaps = "tilemaps[" + level_index + "] = new TileMap(" + str(width) + "," + str(height) + ",["
+markers = "markers[" + level_index + "] = ["
+
 for y in range(height):
     for x in range(width):
         data = image.getpixel((x, y))
-        javascript_string += str(red_to_tile[data[0]]) + ","
-javascript_string += "]);";
 
-print(javascript_string)
+        tilemaps += str(red_to_tile[data[0]]) + ","
+
+        if data[1] in green_to_marker:
+            markers += "[" + str(x) + "," + str(y) + ",\"" + green_to_marker[data[1]] + "\"],"
+
+tilemaps += "]);"
+markers += "];"
+
+print(tilemaps)
+print(markers)

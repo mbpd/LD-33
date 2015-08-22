@@ -3,6 +3,7 @@ var imagesToLoad = [
     "landscape",
     "stallman_right",
     "stallman_left",
+    "mark_c4",
 ]
 
 var images = {};
