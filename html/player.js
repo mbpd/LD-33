@@ -12,16 +12,22 @@ function Player(x, y)
     this.movingRight = false;
     this.movingUp = false;
     this.movingDown = false;
+
+    this.image = images["stallman_left"];
 }
 
 Player.prototype.moveLeft = function(start)
 {
     this.movingLeft = start;
+    if(start)
+        this.image = images["stallman_left"];
 }
 
 Player.prototype.moveRight = function(start)
 {
     this.movingRight = start;
+    if(start)
+        this.image = images["stallman_right"];
 }
 
 Player.prototype.moveDown = function(start)
@@ -61,7 +67,6 @@ Player.prototype.tick = function(start)
 
 Player.prototype.draw = function()
 {
-    var img = images["stallman_right"];
     var jump = Math.round(currentFrame/7) % 3 == 0;
 
     var charHeight = 20;
@@ -69,7 +74,7 @@ Player.prototype.draw = function()
       (this.movingLeft + this.movingRight == 1 ||
        this.movingUp   + this.movingDown))
        charHeight += 5;
-    ctx.drawImage(img, 400-img.width/2, 300-img.height/2 - charHeight);
+    ctx.drawImage(this.image, 400-this.image.width/2, 300-this.image.height/2 - charHeight);
 }
 
 Player.prototype.getCollisions = function()

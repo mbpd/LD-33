@@ -2,6 +2,7 @@ var imagesToLoad = [
     "metro",
     "landscape",
     "stallman_right",
+    "stallman_left",
 ]
 
 var images = {};
