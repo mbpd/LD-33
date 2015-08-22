@@ -41,8 +41,13 @@ Level.prototype.tick = function()
         var collisions = this.people[i].getCollisions();
         for(var j = 0; j < collisions.length; j++)
         {
-            if(this.isCollision(collisions[j][0], collisions[j][1]))
-                this.people[i].rollbackPosition();
+            var valid_x = this.people[i].getValidX();
+            var valid_y = this.people[i].getValidY();
+
+            if(this.isCollision(valid_x, collisions[j][1]))
+                this.people[i].rollbackY();
+            if(this.isCollision(collisions[j][0], valid_y))
+                this.people[i].rollbackX();
         }
         this.people[i].setPositionAsValid();
     }
