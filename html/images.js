@@ -1,4 +1,6 @@
 var imagesToLoad = [
+    "metro",
+    "landscape",
     "stallman_right",
 ]
 
