@@ -9,6 +9,11 @@ function TileMap(width, height, tiles)
     this.data = tiles;
 }
 
+TileMap.prototype.get = function(x, y)
+{
+    return this.data[x + this.width * y];
+}
+
 TileMap.prototype.prerender = function()
 {
     // prerender the entire level so it's faster to render
