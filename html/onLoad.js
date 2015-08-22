@@ -1,16 +1,28 @@
 var canvas, ctx;
 var width, height;
+var gameState;
+var mouse;
 
-window.onload = function() {
-    canvas =  document.getElementById("canvas");
-    ctx =  canvas.getContext("2d");
+canvas = document.getElementById("canvas");
 
-    width = canvas.width;
-    height = canvas.height;
+window.onload = function()
+{
+    if(canvas.getContext)
+    {
+        ctx =  canvas.getContext("2d");
+        width = canvas.width;
+        height = canvas.height;
 
-    onFrame();
+        mouse = new mouseCoordinates(400, 300);
 
-    loadTiles();
+        loadTiles();
+
+        onFrame();
+    }
+    else
+    {
+        alert("Your browser does not support this game.");
+    }
 }
 
 function afterLoadTiles()
