@@ -27,17 +27,10 @@ window.addEventListener("keyup", function(e)
 });
 
 var mouseButtons = ["LEFT", "MIDDLE", "RIGHT"];
-window.addEventListener("mousedown", function(e)
+canvas.addEventListener("click", function(e)
 {
 
-    gameState.mouseHandler(new Event("MOUSE_DOWN", mouseButtons[e.which-1]));
-
-});
-
-window.addEventListener("mouseup", function(e)
-{
-
-    gameState.mouseHandler(new Event("MOUSE_UP", mouseButtons[e.which-1]));
+    gameState.mouseHandler(new Event("MOUSE_CLICK", mouseButtons[e.which-1]));
 
 });
 
