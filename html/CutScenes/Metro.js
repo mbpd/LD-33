@@ -1,32 +1,29 @@
 function MetroCutScene(metro, landscape)
 {
-    this.metro =  metro;
-    this.landscape = landscape;
-    this.y1 = 0;
-    this.y2 = -this.landscape.height;
+        this.metro =  metro;
+        this.landscape = landscape;
+        this.counter = 0.0000001;
+        this.flag = false;
+        this.DIST = 50000;
 }
 
 MetroCutScene.prototype.render = function ()
 {
 
-    ctx.drawImage(this.landscape, 0, this.y1);
-    ctx.drawImage(this.landscape, 0, this.y2);
-    ctx.drawImage(this.metro, (width/2)-(this.metro.width/2), 0);
+        console.log("render");
+        ctx.drawImage(this.landscape, 0, this.y);
+        ctx.drawImage(this.landscape, 0, this.y - this.DIST);
+        ctx.drawImage(this.metro, (width/2)-(this.metro.width/2), 0);
 
 }
 
 MetroCutScene.prototype.tick = function() 
 {
-
-    this.yq++;
-    this.w++;
-
-    if(this.y1 >= this.landscape.height)
-        this.y1 = -this.landscape.height;
-
-    if(this.y2 >= this.landscape.height)
-        this.y2 = -this.landscape.height;
-
+    var t = Math.pow(this.counter, 5)/10;
+    this.y = (Math.pow((1 + (1/t)), t)-1) * this.DIST / (Math.E-1);
+    this.counter += 0.01;
+    if(this.y < 368)
+    console.log(this.y);
 }
 
 MetroCutScene.prototype.stop = function()
