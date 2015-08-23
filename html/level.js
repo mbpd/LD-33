@@ -53,6 +53,13 @@ function Level(tilemap, markers)
             var npc = new NPC(markerX + TILE_SIZE/2, markerY + TILE_SIZE/2, images.npc_left, images.npc_right, new WorkerNPCScript());
             this.addNPC(npc);
         }
+        else if(markerType.startsWith("COMPUTER_"))
+        {
+            var message_id = markerType.split("_")[1];
+            var computer = new Computer(markerX, markerY, +message_id);
+            this.drawables.push(computer);
+            this.interactibles.push(computer);
+        }
     }
 
     this.cursor = images.cursor_default;

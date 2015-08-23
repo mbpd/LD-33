@@ -50,7 +50,14 @@ for y in range(height):
 
         if data[0] == 0:
             tilemaps += str(data[1]) + ","
-            markers += "[" + str(x) + "," + str(y) + ",\"" + green_to_marker[data[2]] + "\"],"
+            markers += "[" + str(x) + "," + str(y) + ",\""
+
+            if data[2] >= 100 and data[2] <= 200:
+                markers += "COMPUTER_" + str(data[2]%100)
+            else:
+                markers +=  green_to_marker[data[2]]
+
+            markers += "\"],"
         else:
             tilemaps += str(tile_to_i[rgb_to_tile[data]]) + ","
 
