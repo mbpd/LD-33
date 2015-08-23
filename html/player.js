@@ -83,9 +83,6 @@ Player.prototype.draw = function()
 {
     var jump = Math.round(currentFrame/7) % 3 == 0;
 
-    console.log(this.x)
-    console.log(this.y);
-
     var charHeight = 20;
     if(jump &&
       (this.movingLeft + this.movingRight == 1 ||
