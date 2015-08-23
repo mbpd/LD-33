@@ -21,7 +21,7 @@ MetroCutScene.prototype.render = function ()
     ctx.drawImage(this.light, 0, 0);
     ctx.drawImage(this.station, 0, this.y);
     ctx.drawImage(this.station, 0, this.y - this.DIST);
-    ctx.drawImage(this.metro, (width/2), 100);
+    ctx.drawImage(this.metro, (width/2),80);
 
 
 }
