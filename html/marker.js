@@ -30,10 +30,3 @@ C4Marker.prototype.getCenterY = function()
 {
     return this.y + 32;
 }
-
-function MetroMarker(x, y)
-{
-    this.x = x;
-    this.y = y;
-    this.cursor = images.cursor_c4
-}
