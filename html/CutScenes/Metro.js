@@ -1,22 +1,26 @@
-function MetroCutScene(metro, station, background)
+function MetroCutScene(metro, station, background, light)
 {
-        this.metro = metro;
-        this.station = station;
-        this.background = background;
-        this.counter = 0.0000001;
-        this.DIST = 50000;
+    this.metro = metro;
+    this.station = station;
+    this.background = background;
+    this.light = light;
+
+    this.counter = 0.0000001;
+    this.DIST = 50000;
+
 }
 
 MetroCutScene.prototype.render = function ()
 {
 
-    for(var i = 0; i < 7; i++) {
+    for(var i = 0; i < 7; i++) 
         ctx.drawImage(this.background, 0, (this.y%100)-100 + i * 100);
-    }
 
+    ctx.drawImage(this.light, 0, 0);
     ctx.drawImage(this.station, 0, this.y);
     ctx.drawImage(this.station, 0, this.y - this.DIST);
     ctx.drawImage(this.metro, (width/2), 100);
+
 
 }
 
