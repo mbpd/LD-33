@@ -16,9 +16,9 @@ C4Marker.prototype.canUse = function(x, y)
            y >= this.y && y < this.y + TILE_SIZE;
 }
 
-C4Marker.prototype.use = function()
+C4Marker.prototype.use = function(level)
 {
-    alert("YOU WIN!");
+    level.startC4Timer();
 }
 
 C4Marker.prototype.getCenterX = function()

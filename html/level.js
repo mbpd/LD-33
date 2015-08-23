@@ -88,6 +88,9 @@ Level.prototype.draw = function()
 
 Level.prototype.tick = function()
 {
+    if(this.C4Timer)
+        this.C4Timer--;
+
     this.cursor = images.cursor_default;
 
     this.next_use = null;
@@ -180,6 +183,11 @@ Level.prototype.use = function()
 Level.prototype.getC4Timer = function()
 {
     return this.C4Timer;
+}
+
+Level.prototype.startC4Timer = function()
+{
+    this.C4Timer = 900;
 }
 
 Level.prototype.getCursor = function()

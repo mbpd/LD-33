@@ -6,7 +6,7 @@ function Player(x, y)
     this.valid_x = 128;
     this.valid_y = 128;
 
-    this.MOVE_SPEED = 6;
+    this.MOVE_SPEED = 15;
 
     this.movingLeft = false;
     this.movingRight = false;
@@ -93,5 +93,5 @@ Player.prototype.draw = function()
 
 Player.prototype.getCollisions = function()
 {
-    return [[this.x, this.y], [this.x-16, this.y], [this.x+16, this.y], [this.x, this.y+15], [this.x, this.y-5]];
+    return [[this.x, this.y], [this.x-16, this.y-16], [this.x-16, this.y+16], [this.x+16, this.y-16], [this.x-16, this.y+16]];
 }

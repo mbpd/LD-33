@@ -7,6 +7,27 @@ function MainGameState(level)
 MainGameState.prototype.render = function ()
 {
     this.level.draw();
+    
+    C4Timer = this.level.getC4Timer();
+    if(C4Timer !== undefined && C4Timer >= 0)
+        this.drawTimer(C4Timer)
+}
+
+MainGameState.prototype.drawTimer = function(time)
+{
+    ctx.font="20px Monospace";
+    ctx.fillStyle = "#FF0000";
+
+    var milliseconds = Math.floor(1000 * (time % 60)/60/10);
+    if(milliseconds < 10)
+        milliseconds = "0" + milliseconds;
+
+    var seconds = Math.floor(time / 60);
+    if(seconds < 10)
+        seconds = "0" + seconds;
+
+    if(seconds > 0 || Math.round(currentFrame/4) % 2 == 0)
+        ctx.fillText(seconds + ":" + milliseconds, width - 100, height - 40);
 }
 
 MainGameState.prototype.tick = function()
