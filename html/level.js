@@ -12,7 +12,7 @@ function Level(tilemap, markers)
     this.collidables = [];
     this.npcs = [];
 
-    //this.markers = [];
+    this.c4Marker = null;
 
     for(var i = 0; i < markers.length; i++)
     {
@@ -29,7 +29,7 @@ function Level(tilemap, markers)
         else if(markerType == "C4")
         {
             var c4 = new C4Marker(markerX, markerY);
-            //this.markers.push(c4);
+            this.c4Marker = c4;
             this.interactibles.push(c4);
             this.drawables.push(c4);
         }
@@ -107,6 +107,33 @@ Level.prototype.tick = function()
 {
     if(this.C4Timer)
         this.C4Timer--;
+
+    // explode the c4 if the timer has reached 0 :DD
+    if(this.C4Timer === 0 && !this.c4Exploded)
+    {
+        var C4_KILL_DISTANCE = Math.pow(800, 2);
+
+        var C4_x = this.c4Marker.getCenterX();
+        var C4_y = this.c4Marker.getCenterY();
+
+        var alivePeople = [];
+
+        // kill everyone!...
+        for(var i = 0; i < this.people.length; i++)
+        {
+            var person = this.people[i];
+            var dist = Math.pow(person.x - C4_x, 2) + Math.pow(person.y - C4_y, 2);
+
+            // ... in range
+            if(dist < C4_KILL_DISTANCE)
+                person.kill();
+            else
+                alivePeople.push(person);
+        }
+
+        this.people = alivePeople;
+        this.c4Exploded = true;
+    }
 
     this.cursor = images.cursor_default;
 
