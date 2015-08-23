@@ -4,7 +4,6 @@ var gameState;
 var mouse;
 
 canvas = document.getElementById("canvas");
-
 window.onload = function()
 {
     if(canvas.getContext)
