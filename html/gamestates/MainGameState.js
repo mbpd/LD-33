@@ -50,6 +50,7 @@ MainGameState.prototype.keyboardHandler = function(evt)
     }
 }
 
-MainGameState.prototype.mouseHandler = function(evt){}
-
-
+MainGameState.prototype.mouseHandler = function(evt)
+{
+    this.level.use();
+}

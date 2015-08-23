@@ -20,3 +20,13 @@ C4Marker.prototype.use = function()
 {
     alert("YOU WIN!");
 }
+
+C4Marker.prototype.getCenterX = function()
+{
+    return this.x + 32;
+}
+
+C4Marker.prototype.getCenterY = function()
+{
+    return this.y + 32;
+}

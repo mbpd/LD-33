@@ -44,6 +44,9 @@ function Level(tilemap, entities, markers)
     }
 
     this.cursor = images.cursor_default;
+
+    this.next_use = null;
+    this.USE_RANGE = 150;
 }
 
 Level.prototype.draw = function()
@@ -70,8 +73,13 @@ Level.prototype.tick = function()
 
     for(var i = 0; i < this.interactibles.length; i++)
     {
-        if(this.interactibles[i].canUse(mouse.x - width/2 + this.player.x, mouse.y - height/2 + this.player.y))
+        if(this.interactibles[i].canUse(mouse.x - width/2 + this.player.x, mouse.y - height/2 + this.player.y) &&
+           Math.pow(this.interactibles[i].getCenterX() - this.player.x, 2) + Math.pow(this.interactibles[i].getCenterY() - this.player.y, 2) < Math.pow(this.USE_RANGE, 2))
+        {
             this.cursor = this.interactibles[i].cursor;
+            this.next_use = this.interactibles[i];
+            break;
+        }
     }
 
     this.player.tick();
@@ -107,6 +115,16 @@ Level.prototype.tick = function()
         }
         this.people[i].setPositionAsValid();
     }
+}
+
+Level.prototype.use = function()
+{
+    this.next_use.use(this);
+}
+
+Level.prototype.getC4Timer = function()
+{
+    return this.C4Timer;
 }
 
 Level.prototype.getCursor = function()
