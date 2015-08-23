@@ -16,6 +16,11 @@ var imagesToLoad = [
     "door_up_open",
     "door_up_closed",
     "symbol_alert",
+    "steeldoor_closed",
+    "steeldoor_open",
+    "inactive_pad",
+    "active_pad",
+>>>>>>> Stashed changes
 ]
 
 var images = {};

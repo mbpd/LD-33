@@ -2,11 +2,11 @@ function triggerPad(x, y)
 {
     this.image = images.inactive_pad;
     this.x = x + TILE_SIZE;
-    this.y = y + TILE_SIZE:
+    this.y = y + TILE_SIZE;
     this.active = false;
     
     this.ox = -TILE_SIZE;
-    this.oy = -TILE_SIZE;;
+    this.oy = -TILE_SIZE;
 }
 
 triggerPad.prototype.activate = function()
