@@ -37,29 +37,3 @@ function MetroMarker(x, y)
     this.y = y;
     this.cursor = images.cursor_c4
 }
-
-MetroMarker.prototype.draw = function()
-{
-    ctx.drawImage(images.metro_station, this.x, this.y);
-}
-
-MetroMarker.prototype.canUse = function(x, y)
-{
-    return x >= this.x && x < this.x + TILE_SIZE &&
-           y >= this.y && y < this.y + TILE_SIZE;
-}
-
-MetroMarker.prototype.use = function()
-{
-    alert("YOU ENTERED THE METRO!");
-}
-
-MetroMarker.prototype.getCenterX = function()
-{
-    return this.x + 32;
-}
-
-MetroMarker.prototype.getCenterY = function()
-{
-    return this.y + 32;
-}
