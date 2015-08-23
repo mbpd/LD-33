@@ -48,6 +48,11 @@ function Level(tilemap, markers)
             this.collidables.push(metro);
             this.drawables.push(metro);
         }
+        else if(markerType == "NPC")
+        {
+            var npc = new NPC(markerX, markerY, images.npc_left, images.npc_right, new WorkerNPCScript());
+            this.addNPC(npc);
+        }
     }
 
     this.cursor = images.cursor_default;
