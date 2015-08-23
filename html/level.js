@@ -94,8 +94,8 @@ Level.prototype.addNPC = function(npc)
 {
 
     this.people.push(npc);
-    this.drawables
-
+    this.drawables.push(npc);
+    this.interactibles.push(npc);
 }
 
 Level.prototype.tick = function()

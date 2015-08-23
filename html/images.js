@@ -15,6 +15,7 @@ var imagesToLoad = [
     "cursor_talk",
     "door_up_open",
     "door_up_closed",
+    "symbol_alert",
 ]
 
 var images = {};
