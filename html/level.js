@@ -122,57 +122,64 @@ Level.prototype.tick = function()
         this.people[i].tick();
 
         var collisions = this.people[i].getCollisions();
-        var valid_x = this.people[i].getValidX();
-        var valid_y = this.people[i].getValidY();
         for(var j = 0; j < collisions.length; j++)
         {
+            var valid_x = this.people[i].getValidX();
+            var valid_y = this.people[i].getValidY();
+
             var col_x = this.isCollision(collisions[j][0], valid_y);
             var col_y = this.isCollision(valid_x, collisions[j][1]);
             var col = this.isCollision(collisions[j][0], collisions[j][1]);
 
             if(col)
             {
+                if(!col_x && !col_y)
+                {
+                    this.people[i].rollbackY();
+                }
+
                 if(col_x)
                     this.people[i].rollbackX();
+
                 if(col_y)
                     this.people[i].rollbackY();
             }
-            else
-            {
-            }
-                
+
 
             for(var k = 0; k < this.collidables.length; k++)
             {
-                var rollbacks = 0;
                 var collisionBox = this.collidables[k].getCollisionBox();
+
+                var valid_x = this.people[i].getValidX();
+                var valid_y = this.people[i].getValidY();
 
                 if(!collisionBox)
                     continue;
 
-                if(valid_x > collisionBox[0] && valid_x < collisionBox[2] &&
-                   collisions[j][1] > collisionBox[1] &&
-                   collisions[j][1] <  collisionBox[3])
+                var col_x = valid_y >= collisionBox[1] &&
+                            valid_y <= collisionBox[3] &&
+                            collisions[j][0] >= collisionBox[0] &&
+                            collisions[j][0] <= collisionBox[2];
+                var col_y = valid_x >= collisionBox[0] && 
+                            valid_x <= collisionBox[2] &&
+                            collisions[j][1] >= collisionBox[1] &&
+                            collisions[j][1] <= collisionBox[3];
+                var col =   collisions[j][0] >= collisionBox[0] &&
+                            collisions[j][0] <= collisionBox[2] &&
+                            collisions[j][1] >= collisionBox[1] &&
+                            collisions[j][1] <= collisionBox[3];
+                if(col)
                 {
-                    this.people[i].rollbackY();
-                    rollbacks++;
-                }
+                    if(!col_x && !col_y)
+                    {
+                        this.people[i].rollbackY();
+                    }
 
-                if(valid_y > collisionBox[1] && valid_y < collisionBox[3] &&
-                   collisions[j][0] > collisionBox[0] &&
-                   collisions[j][0] <  collisionBox[2])
-                {
-                    this.people[i].rollbackX();
-                    rollbacks++;
-                }
-                if(rollbacks == 0 &&
-                   collisions[j][0] > collisionBox[0] &&
-                   collisions[j][0] <  collisionBox[2] &&
-                   collisions[j][1] > collisionBox[1] &&
-                   collisions[j][1] <  collisionBox[3])
-                {
-                    this.people[i].rollbackX();
-                    this.people[i].rollbackY();
+                    if(col_x)
+                        this.people[i].rollbackX();
+
+                    if(col_y)
+                        this.people[i].rollbackY();
                 }
             }
 
@@ -211,7 +218,6 @@ Level.prototype.isCollision = function(x, y)
 {
     var tile_x = Math.floor(x/TILE_SIZE);
     var tile_y = Math.floor(y/TILE_SIZE);
-    console.log(tile_x, tile_y);
 
     return collides.has(this.tilemap.get(tile_x, tile_y))
 }

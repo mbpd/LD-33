@@ -93,5 +93,5 @@ Player.prototype.draw = function()
 
 Player.prototype.getCollisions = function()
 {
-    return [[this.x, this.y], [this.x, this.y + 5], [this.x-12, this.y], [this.x+12, this.y]];
+    return [[this.x - 14, this.y - 4], [this.x - 14, this.y + 4], [this.x + 14, this.y - 4], [this.x + 14, this.y + 4]];
 }

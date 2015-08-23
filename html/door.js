@@ -12,7 +12,7 @@ function Door(x, y, side)
     {
         case "up":
             this.oy -= 4;
-            this.collisionBox = [this.x + this.ox, this.y - 16, this.x, this.y];
+            this.collisionBox = [this.x + this.ox, this.y - 16, this.x, this.y + 3];
             break;
     }
 
