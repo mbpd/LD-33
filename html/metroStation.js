@@ -1,12 +1,12 @@
 function MetroStation(x, y)
 {
     this.x = x + TILE_SIZE*2;
-    this.y = y + 112;
+    this.y = y + 112 - 5;
 
     this.ox = -TILE_SIZE * 2;
-    this.oy = -112;
+    this.oy = -112 + 5;
 
-    this.colisionBox = [this.x + this.ox, this.y + this.oy + TILE_SIZE, this.x, this.y - TILE_SIZE/2];
+    this.collisionBox = [this.x + this.ox, this.y + this.oy + 10, this.x, this.y - 10];
 
     this.cursor = images.cursor_use;
 }

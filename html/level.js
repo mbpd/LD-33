@@ -3,13 +3,9 @@ function Level(tilemap, markers)
     this.tilemap = tilemap;
     this.tilemap.prerender();
 
-    this.player = new Player();
-
     this.drawables = [];
 
     this.people = [];
-    this.people.push(this.player);
-    this.drawables.push(this.player);
 
     this.entities = [];
     this.interactibles = [];
@@ -26,8 +22,9 @@ function Level(tilemap, markers)
 
         if(markerType == "SPAWN")
         {
-            this.player.x = markerX + TILE_SIZE/2;
-            this.player.y = markerY + TILE_SIZE/2;
+            this.player = new Player(markerX, markerY);
+            this.people.push(this.player);
+            this.drawables.push(this.player);
         }
         else if(markerType == "C4")
         {
@@ -43,6 +40,13 @@ function Level(tilemap, markers)
             this.interactibles.push(door);
             this.collidables.push(door);
             this.drawables.push(door);
+        }
+        else if(markerType == "METRO")
+        {
+            var metro = new MetroStation(markerX, markerY);
+            this.interactibles.push(metro);
+            this.collidables.push(metro);
+            this.drawables.push(metro);
         }
     }
 
@@ -118,30 +122,25 @@ Level.prototype.tick = function()
         this.people[i].tick();
 
         var collisions = this.people[i].getCollisions();
+        var valid_x = this.people[i].getValidX();
+        var valid_y = this.people[i].getValidY();
         for(var j = 0; j < collisions.length; j++)
         {
-            var valid_x = this.people[i].getValidX();
-            var valid_y = this.people[i].getValidY();
+            var col_x = this.isCollision(collisions[j][0], valid_y);
+            var col_y = this.isCollision(valid_x, collisions[j][1]);
+            var col = this.isCollision(collisions[j][0], collisions[j][1]);
 
-            var rollbacks = 0;
-
-            if(this.isCollision(valid_x, collisions[j][1]))
+            if(col)
             {
-                this.people[i].rollbackY();
-                rollbacks++;
+                if(col_x)
+                    this.people[i].rollbackX();
+                if(col_y)
+                    this.people[i].rollbackY();
             }
-
-            if(this.isCollision(collisions[j][0], valid_y))
+            else
             {
-                this.people[i].rollbackX();
-                rollbacks++;
             }
-
-            if(rollbacks == 0 && this.isCollision(collisions[j][0], collisions[j][1]))
-            {
-                this.people[i].rollbackX();
-                this.people[i].rollbackY();
-            }
+                
 
             for(var k = 0; k < this.collidables.length; k++)
             {
@@ -212,6 +211,7 @@ Level.prototype.isCollision = function(x, y)
 {
     var tile_x = Math.floor(x/TILE_SIZE);
     var tile_y = Math.floor(y/TILE_SIZE);
+    console.log(tile_x, tile_y);
 
     return collides.has(this.tilemap.get(tile_x, tile_y))
 }

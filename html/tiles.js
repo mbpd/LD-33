@@ -1,7 +1,7 @@
 var TILE_SIZE = 64;
 var tiles = [];
 
-var collides = new Set([1, 2, 3]);
+var collides = new Set([1, 2, 3, 5]);
 
 var BASE_TILE_URL = "tiles/"
 var NUMBER_OF_TILES = 6;

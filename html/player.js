@@ -1,12 +1,12 @@
 function Player(x, y)
 {
-    this.x = 128;
-    this.y = 128;
+    this.x = x;
+    this.y = y;
 
-    this.valid_x = 128;
-    this.valid_y = 128;
+    this.valid_x = x;
+    this.valid_y = y;
 
-    this.MOVE_SPEED = 15;
+    this.MOVE_SPEED = 6;
 
     this.movingLeft = false;
     this.movingRight = false;
@@ -93,5 +93,5 @@ Player.prototype.draw = function()
 
 Player.prototype.getCollisions = function()
 {
-    return [[this.x, this.y], [this.x-16, this.y-16], [this.x-16, this.y+16], [this.x+16, this.y-16], [this.x-16, this.y+16]];
+    return [[this.x, this.y], [this.x, this.y + 5], [this.x-12, this.y], [this.x+12, this.y]];
 }
