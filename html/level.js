@@ -71,6 +71,7 @@ Level.prototype.tick = function()
 {
     this.cursor = images.cursor_default;
 
+    this.next_use = null;
     for(var i = 0; i < this.interactibles.length; i++)
     {
         if(this.interactibles[i].canUse(mouse.x - width/2 + this.player.x, mouse.y - height/2 + this.player.y) &&
@@ -119,7 +120,8 @@ Level.prototype.tick = function()
 
 Level.prototype.use = function()
 {
-    this.next_use.use(this);
+    if(this.next_use)
+        this.next_use.use(this);
 }
 
 Level.prototype.getC4Timer = function()

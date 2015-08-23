@@ -6,7 +6,7 @@ function Player(x, y)
     this.valid_x = 128;
     this.valid_y = 128;
 
-    this.MOVE_SPEED = 8;
+    this.MOVE_SPEED = 9;
 
     this.movingLeft = false;
     this.movingRight = false;
