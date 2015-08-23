@@ -16,7 +16,7 @@ MetroCutScene.prototype.render = function ()
 {
 
     for(var i = 0; i < 7; i++) 
-        ctx.drawImage(this.background, 0, (this.y%100)-100 + i * 100);
+        ctx.drawImage(this.background, 0, Math.round((this.y%100)-100 + i * 100));
 
     ctx.drawImage(this.light, 0, 0);
     ctx.drawImage(this.station, 0, this.y);
