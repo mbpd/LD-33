@@ -86,6 +86,14 @@ Level.prototype.draw = function()
     ctx.restore();
 }
 
+Level.prototype.addNPC(npc)
+{
+
+    this.people.push(npc);
+    this.drawables
+
+}
+
 Level.prototype.tick = function()
 {
     if(this.C4Timer)
@@ -105,10 +113,10 @@ Level.prototype.tick = function()
         }
     }
 
-    this.player.tick();
-
     for(var i = 0; i < this.people.length; i++)
     {
+        this.people[i].tick();
+
         var collisions = this.people[i].getCollisions();
         for(var j = 0; j < collisions.length; j++)
         {

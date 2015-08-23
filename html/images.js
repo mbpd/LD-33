@@ -6,6 +6,8 @@ var imagesToLoad = [
     "metro_station",
     "stallman_right",
     "stallman_left",
+    "npc_left",
+    "npc_right",
     "mark_c4",
     "cursor_default",
     "cursor_c4",
