@@ -32,3 +32,10 @@ function afterLoadImages()
 
     onFrame();
 }
+
+function switchState(newState)
+{
+
+    gameState = newState;
+
+}
