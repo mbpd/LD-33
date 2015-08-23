@@ -86,7 +86,7 @@ Level.prototype.draw = function()
     ctx.restore();
 }
 
-Level.prototype.addNPC(npc)
+Level.prototype.addNPC = function(npc)
 {
 
     this.people.push(npc);
