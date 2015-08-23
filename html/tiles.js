@@ -4,7 +4,7 @@ var tiles = [];
 var collides = new Set([1, 2, 3]);
 
 var BASE_TILE_URL = "tiles/"
-var NUMBER_OF_TILES = 4;
+var NUMBER_OF_TILES = 6;
 var current_tile = 0;
 
 function loadNextTile()
