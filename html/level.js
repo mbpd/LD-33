@@ -50,7 +50,7 @@ function Level(tilemap, markers)
         }
         else if(markerType == "NPC")
         {
-            var npc = new NPC(markerX, markerY, images.npc_left, images.npc_right, new WorkerNPCScript());
+            var npc = new NPC(markerX + TILE_SIZE/2, markerY + TILE_SIZE/2, images.npc_left, images.npc_right, new WorkerNPCScript());
             this.addNPC(npc);
         }
     }

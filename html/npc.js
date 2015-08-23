@@ -15,17 +15,35 @@ function NPC(x, y, left_image, right_image, NPCScript)
     this.script = NPCScript;
 
     this.cursor = images.cursor_talk;
+
+    this.jumping = false;
+    this.jumpOffset = Math.floor(Math.random() * 100);
+    console.log(this.jumpOffset);
 }
 
 NPC.prototype.draw = function()
 {
-    ctx.drawImage(this.image, this.x - this.image.width/2, this.y - this.image.height/2 + this.CHAR_HEIGHT);
+    var jumpHeight = 0;
+    if(this.jumping)
+    {
+        var jump = Math.round((currentFrame+this.jumpOffset)/7) % 3 == 0;
+
+        if(jump)
+            jumpHeight += 5;
+    }
+
+    ctx.drawImage(this.image, this.x - this.image.width/2, this.y - this.image.height/2 + this.CHAR_HEIGHT - jumpHeight);
+
     this.script.draw(this);
 }
 
 NPC.prototype.tick = function()
 {
     this.script.tick(this);
+    if(this.x != this.valid_x || this.y != this.valid_y)
+        this.jumping = true;
+    else
+        this.jumping = false;
 }
 
 NPC.prototype.turnLeft = function()
