@@ -24,7 +24,7 @@ CutSceneState.prototype.tick = function()
         this.tt += 0.005;
 
     if(this.tt > 1)
-        switchState(new MainGameState( new Level(tilemaps[0], markers[0])));
+        switchState(new MainGameState(new Level(getNextLevel))); 
 }
 
 
