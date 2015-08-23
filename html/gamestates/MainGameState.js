@@ -11,6 +11,8 @@ MainGameState.prototype.render = function ()
     C4Timer = this.level.getC4Timer();
     if(C4Timer !== undefined && C4Timer >= 0)
         this.drawTimer(C4Timer)
+
+    this.drawKillcount(killcount, combo);
 }
 
 MainGameState.prototype.drawTimer = function(time)
@@ -28,6 +30,28 @@ MainGameState.prototype.drawTimer = function(time)
 
     if(seconds > 0 || Math.round(currentFrame/4) % 2 == 0)
         ctx.fillText(seconds + ":" + milliseconds, width - 100, height - 40);
+}
+
+MainGameState.prototype.drawKillcount = function(kills, combo)
+{
+    if(kills < 10)
+        kills = "00" + kills;
+    else if(kills < 100)
+        kills = "0" + kills;
+
+    if(combo < 10)
+        combo = "00" + combo;
+    else if(combo < 100)
+        combo = "0" + combo;
+
+    ctx.font = "20px Monospace";
+
+    ctx.fillStyle = "#FFFFFF";
+    if(getComboPercentDone() < 1)
+        ctx.fillText(combo, width - 40, 40 - 20 * getComboPercentDone());
+
+    ctx.fillStyle = "#FF0000";
+    ctx.fillText(kills, width - 40, 20);
 }
 
 MainGameState.prototype.tick = function()

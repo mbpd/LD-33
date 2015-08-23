@@ -22,11 +22,13 @@ window.onload = function()
 
 function afterLoadTiles()
 {
+    console.log("Loaded tiles!");
     loadImages();
 }
 
 function afterLoadImages()
 {
+    console.log("Loaded images!");
     mouse = new mouseCoordinates(400, 300);
     gameState = new CutSceneState(new MetroCutScene(images["metro"], images["station"], images["background"], images["light"] ));
 
