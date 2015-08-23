@@ -1,7 +1,7 @@
 function CutSceneState(cutScene)
 {
     this.cutScene = cutScene;
-    this.tt = 0;
+    this.tt = 1;
 }
 
 CutSceneState.prototype.render = function()
