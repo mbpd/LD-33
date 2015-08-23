@@ -1,6 +1,7 @@
 var imagesToLoad = [
     "metro",
     "background",
+    "light",
     "station",
     "stallman_right",
     "stallman_left",
