@@ -33,7 +33,7 @@ CutSceneState.prototype.keyboardHandler = function(evt)
 
     //Space or Enter
     if(evt.data == 32 || evt.data == 13)
-        cutScene.stop();
+        this.cutScene.stop();
 
 }
 
