@@ -35,7 +35,8 @@ red_to_tile = {
 
 green_to_marker= {
     0: "SPAWN",
-    1: "C4"
+    1: "C4",
+    255: "DOOR_UP",
 }
 
 tilemaps = "tilemaps[" + level_index + "] = new TileMap(" + str(width) + "," + str(height) + ",["

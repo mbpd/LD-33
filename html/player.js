@@ -6,7 +6,7 @@ function Player(x, y)
     this.valid_x = 128;
     this.valid_y = 128;
 
-    this.MOVE_SPEED = 9;
+    this.MOVE_SPEED = 6;
 
     this.movingLeft = false;
     this.movingRight = false;
@@ -88,10 +88,10 @@ Player.prototype.draw = function()
       (this.movingLeft + this.movingRight == 1 ||
        this.movingUp   + this.movingDown  == 1))
        charHeight += 5;
-    ctx.drawImage(this.image, 400-this.image.width/2, 300-this.image.height/2 - charHeight);
+    ctx.drawImage(this.image, this.x -this.image.width/2, this.y -this.image.height/2 - charHeight);
 }
 
 Player.prototype.getCollisions = function()
 {
-    return [[this.x, this.y], [this.x-12, this.y], [this.x+12, this.y], [this.x, this.y+10]];
+    return [[this.x, this.y], [this.x-16, this.y], [this.x+16, this.y], [this.x, this.y+15], [this.x, this.y-5]];
 }

@@ -1,27 +1,22 @@
-function Level(tilemap, entities, markers)
+function Level(tilemap, markers)
 {
     this.tilemap = tilemap;
     this.tilemap.prerender();
 
-    this.entities = entities;
-
     this.player = new Player();
+
+    this.drawables = [];
 
     this.people = [];
     this.people.push(this.player);
+    this.drawables.push(this.player);
 
+    this.entities = [];
     this.interactibles = [];
+    this.collidables = [];
     this.npcs = [];
 
-    for(var i = 0; i < this.entities.length; i++)
-    {
-        if(this.entities[i].interactible)
-            this.interactibles.push(entities[i]);
-        if(this.entities[i].npc)
-            this.npcs.push(entities[i]);
-    }
-
-    this.markers = [];
+    //this.markers = [];
 
     for(var i = 0; i < markers.length; i++)
     {
@@ -33,13 +28,21 @@ function Level(tilemap, entities, markers)
         {
             this.player.x = markerX + TILE_SIZE/2;
             this.player.y = markerY + TILE_SIZE/2;
-            console.log("SPAWN!");
         }
         else if(markerType == "C4")
         {
             var c4 = new C4Marker(markerX, markerY);
-            this.markers.push(c4);
+            //this.markers.push(c4);
             this.interactibles.push(c4);
+            this.drawables.push(c4);
+        }
+        else if(markerType == "DOOR_UP")
+        {
+            var side = markerType.split("_")[1].toLowerCase();
+            var door = new Door(markerX, markerY, side);
+            this.interactibles.push(door);
+            this.collidables.push(door);
+            this.drawables.push(door);
         }
     }
 
@@ -47,6 +50,23 @@ function Level(tilemap, entities, markers)
 
     this.next_use = null;
     this.USE_RANGE = 150;
+}
+
+function compareByPosition(a, b)
+{
+    if(a.y == b.y)
+    {
+        if(a.x > b.x)
+            return 1;
+        else if(a.x == b.x)
+            return 0;
+        else
+            return -1;
+    }
+    else if(a.y > b.y)
+        return 1;
+    else
+        return -1;
 }
 
 Level.prototype.draw = function()
@@ -58,13 +78,12 @@ Level.prototype.draw = function()
 
     ctx.save();
     ctx.translate(OFFSET_X, OFFSET_Y);
-    for(var i = 0; i < this.markers.length; i++)
+    this.drawables.sort(compareByPosition);
+    for(var i = 0; i < this.drawables.length; i++)
     {
-        this.markers[i].draw();
+        this.drawables[i].draw();
     }
     ctx.restore();
-
-    this.player.draw();
 }
 
 Level.prototype.tick = function()
@@ -111,6 +130,40 @@ Level.prototype.tick = function()
             {
                 this.people[i].rollbackX();
                 this.people[i].rollbackY();
+            }
+
+            for(var k = 0; k < this.collidables.length; k++)
+            {
+                var rollbacks = 0;
+                var collisionBox = this.collidables[k].getCollisionBox();
+
+                if(!collisionBox)
+                    continue;
+
+                if(valid_x > collisionBox[0] && valid_x < collisionBox[2] &&
+                   collisions[j][1] > collisionBox[1] &&
+                   collisions[j][1] <  collisionBox[3])
+                {
+                    this.people[i].rollbackY();
+                    rollbacks++;
+                }
+
+                if(valid_y > collisionBox[1] && valid_y < collisionBox[3] &&
+                   collisions[j][0] > collisionBox[0] &&
+                   collisions[j][0] <  collisionBox[2])
+                {
+                    this.people[i].rollbackX();
+                    rollbacks++;
+                }
+                if(rollbacks == 0 &&
+                   collisions[j][0] > collisionBox[0] &&
+                   collisions[j][0] <  collisionBox[2] &&
+                   collisions[j][1] > collisionBox[1] &&
+                   collisions[j][1] <  collisionBox[3])
+                {
+                    this.people[i].rollbackX();
+                    this.people[i].rollbackY();
+                }
             }
 
         }

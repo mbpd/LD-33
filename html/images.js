@@ -9,6 +9,8 @@ var imagesToLoad = [
     "cursor_c4",
     "cursor_use",
     "cursor_talk",
+    "door_up_open",
+    "door_up_closed",
 ]
 
 var images = {};
