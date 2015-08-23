@@ -20,7 +20,6 @@ var imagesToLoad = [
     "steeldoor_open",
     "inactive_pad",
     "active_pad",
->>>>>>> Stashed changes
 ]
 
 var images = {};
