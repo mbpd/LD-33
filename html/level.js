@@ -96,6 +96,12 @@ function Level(tilemap, markers)
             this.drawables.push(w);
             this.interactibles.push(w);
         }
+        else if(markerType == "SERVER")
+        {
+            var s = new Server(markerX, markerY);
+            this.drawables.push(s);
+            this.collidables.push(s);
+        }
     }
 
     this.cursor = images.cursor_default;

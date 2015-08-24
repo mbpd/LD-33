@@ -1,10 +1,10 @@
 function Server(x, y)
 {
     this.x = x + TILE_SIZE;
-    this.y = y + TILE_SIZE * 2;
+    this.y = y + TILE_SIZE;
 
     this.ox = -TILE_SIZE;
-    this.oy = -TILE_SIZE * 2;
+    this.oy = -TILE_SIZE;
 
     this.collisionBox = [this.x + this.ox, this.y - TILE_SIZE, this.x, this.y];
 
@@ -16,10 +16,19 @@ function Server(x, y)
 
 Server.prototype.draw = function()
 {
-    ctx.drawImage(this.images[Math.floor(currentFrame/5 + this.frameOffset) % 4], this.x + this.ox, this.y + this.oy);
+    if(!this.destroyed)
+        ctx.drawImage(this.images[Math.floor(currentFrame/5 + this.frameOffset) % 4], this.x + this.ox, this.y + this.oy - TILE_SIZE);
 }
 
 Server.prototype.getCollisionBox = function()
 {
+    if(this.destroyed)
+        return null;
+
     return this.collisionBox;
+}
+
+Server.prototype.destroy = function()
+{
+    this.destroyed = true;
 }
