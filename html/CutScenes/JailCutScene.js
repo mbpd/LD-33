@@ -18,11 +18,9 @@ JailCutScene.prototype.render = function()
 
 JailCutScene.prototype.tick = function()
 {
-    console.log("JAIL");
 
     this.delta = new Date().getTime() - this.start;
-    console.log(this.delta);
-    if(this.delta > 200)
+    if(this.delta > 4000)
         this.stop();
 }
 

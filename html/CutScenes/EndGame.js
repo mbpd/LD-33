@@ -20,9 +20,7 @@ EndGame.prototype.tick = function()
 {
 
     this.delta = new Date().getTime() - this.start;
-    console.log("END")
-    console.log(this.delta);
-    if(this.delta > 2000)
+    if(this.delta > 5000)
         this.stop();
 }
 

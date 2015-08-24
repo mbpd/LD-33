@@ -7,7 +7,7 @@ function MainGameState(level)
     this.message = null;
     this.old_cursor = null;
 
-    this.tt = 0;
+    this.tt = 0.5;
 }
 
 MainGameState.prototype.render = function ()
@@ -36,8 +36,8 @@ MainGameState.prototype.render = function ()
         this.drawKillcount(killcount, combo);
 
         if((this.level.getPlayer().dead || this.level.getPlayer().arrested)
-            && this.tt > 1)
-            this.fadeout(this.tt - 1);
+            && this.tt > 0.5)
+            this.fadeout(this.tt - 0.5);
     }
 }
 
@@ -106,7 +106,7 @@ MainGameState.prototype.tick = function()
     {
         this.tt += 0.0030;
 
-        if(this.tt > 1)
+        if(this.tt > 1.5)
             switchState(new CutSceneState(new DeathCutScene()));
     }
 
@@ -114,7 +114,7 @@ MainGameState.prototype.tick = function()
     {
         this.tt += 0.003;
 
-        if(this.tt > 2)
+        if(this.tt > 1.5)
             switchState(new CutSceneState(new JailCutScene()));
     }
     else
