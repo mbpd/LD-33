@@ -25,6 +25,8 @@ function MetroCutScene()
         this.stop();
 
     this.levelName = names[this.level];
+
+    playMusic("music/metro.ogg");
 }
 
 MetroCutScene.prototype.render = function ()
@@ -77,7 +79,10 @@ MetroCutScene.prototype.stop = function()
 MetroCutScene.prototype.switchState = function()
 {
     if(this.level != null)
+    {
         switchState(new MainGameState(new Level(tilemaps[this.level],markers[this.level]))); 
+        playMusic(musicLevels[this.level]);
+    }
     else
         switchState(new CutSceneState(new WinGame()));
 }

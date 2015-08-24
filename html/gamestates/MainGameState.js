@@ -91,6 +91,14 @@ MainGameState.prototype.fadeout = function(tt)
 
 MainGameState.prototype.tick = function()
 {
+    C4Timer = this.level.getC4Timer();
+
+    if(!(C4Timer === 0))
+        restartMusicIfFinished();
+    else
+        currentMusic.pause();
+
+
     if(this.showingMessage)
         return;
 
