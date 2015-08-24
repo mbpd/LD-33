@@ -36,7 +36,7 @@ triggerPad.prototype.deactivate = function()
     }
 }
 
-triggerPad.prototype.toogle = function()
+triggerPad.prototype.toggle = function()
 {
     this.active = !this.active;
     this.image = this.active ? images.active_pad : images.inactive_pad;

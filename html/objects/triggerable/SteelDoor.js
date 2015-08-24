@@ -22,7 +22,7 @@ SteelDoor.prototype.turnOff = function()
     this.image = images.steeldoor_closed;
 }
 
-SteelDoor.prototype.toogle = function()
+SteelDoor.prototype.toggle = function()
 {
     this.triggered = !this.triggered;
     this.image = this.triggered ? images.steeldoor_open : images.steeldoor_closed;
