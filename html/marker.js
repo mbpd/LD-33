@@ -3,6 +3,8 @@ function C4Marker(x, y)
     this.x = x;
     this.y = y;
     this.cursor = images.cursor_c4
+
+    this.used = false;
 }
 
 C4Marker.prototype.draw = function()
@@ -12,6 +14,8 @@ C4Marker.prototype.draw = function()
 
 C4Marker.prototype.canUse = function(x, y)
 {
+    if(this.used)
+        return false;
     return x >= this.x && x < this.x + TILE_SIZE &&
            y >= this.y && y < this.y + TILE_SIZE;
 }
@@ -19,7 +23,10 @@ C4Marker.prototype.canUse = function(x, y)
 C4Marker.prototype.use = function(level)
 {
     if(level.c4Timer === undefined && !level.c4Exploded)
+    {
+        this.used = true;
         level.startC4Timer();
+    }
 }
 
 C4Marker.prototype.getCenterX = function()

@@ -1,16 +1,15 @@
 function triggerPad(x, y)
 {
     this.image = images.inactive_pad;
-    this.x = x + TILE_SIZE;
-    this.y = y + TILE_SIZE;
+    this.x = x;
+    this.y = y;
     this.active = false;
-    
-    this.ox = -TILE_SIZE;
-    this.oy = -TILE_SIZE;
 }
 
 triggerPad.prototype.activate = function()
 {
+    if(this.active)
+        return;
     this.active = true;
     this.image = images.active_pad;
 
@@ -23,6 +22,10 @@ triggerPad.prototype.activate = function()
 
 triggerPad.prototype.deactivate = function()
 {
+    if(!this.active)
+        return;
+
+    console.log("DEACT");
     this.active = false;
     this.image = images.inactive_pad;
 
@@ -46,23 +49,23 @@ triggerPad.prototype.toogle = function()
 
 triggerPad.prototype.getCenterX = function ()
 {
-    return this.x + this.ox/2;
+    return this.x + TILE_SIZE/2;
 }
 
 triggerPad.prototype.getCenterY = function()
 {
-    return this.y + this.oy/2;
+    return this.y + TILE_SIZE/2;
 }
 
 triggerPad.prototype.draw = function()
 {
-    ctx.drawImage(this.image, this.x + this.ox, this.y + this.oy);
+    ctx.drawImage(this.image, this.x, this.y);
 }
 
 triggerPad.prototype.canTouch = function(collisions)
 {
     for(var i = 0; i < collisions.length; i++){
-        if(collisions[i][0]>= this.x+this.ox && collisions[i][0]<= this.x && collisions[i][1] >= this.y+this.oy && collisions[i][1] <= this.y)
+        if(this.x < collisions[i][0] && this.x + TILE_SIZE > collisions[i][0] && this.y < collisions[i][1] && this.y + TILE_SIZE > collisions[i][1])
         return true;
     }
 

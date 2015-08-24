@@ -53,7 +53,7 @@ function Level(tilemap, markers)
         }
         else if(markerType == "NPC")
         {
-            var npc = new NPC(markerX, markerY, images.npc_left, images.npc_right, new WorkerNPCScript());
+            var npc = new NPC(markerX + TILE_SIZE/2, markerY + TILE_SIZE/2, images.npc_left, images.npc_right, new WorkerNPCScript());
             this.addNPC(npc);
         }
         else if(markerType.startsWith("COMPUTER_"))
@@ -67,6 +67,16 @@ function Level(tilemap, markers)
         {
             var npc = new NPC(markerX + TILE_SIZE/2, markerY + TILE_SIZE/2, images.guard_left, images.guard_right, new GuardCatchNPCScript(this));
             this.addNPC(npc);
+        }
+        else if(markerType == "TRIGGERPAD")
+        {
+            var triggerpad = new triggerPad(markerX, markerY);
+            this.addTouchable(triggerpad);
+        }
+        else if(markerType == "STEELDOOR")
+        {
+            var steeldoor = new SteelDoor(markerX, markerY);
+            this.addTriggerable(steeldoor);
         }
     }
 
@@ -177,9 +187,19 @@ Level.prototype.tick = function()
         }
     }
 
+    // deactivate all triggers
     for(var i = 0; i < this.touchables.length; i++)
         this.touchables[i].deactivate();
+        
+    // activate the ones with players on them
+    for(var i = 0; i < this.touchables.length; i++)
+    {
+        for(var j = 0; j < this.people.length; j++)
+            if(this.touchables[i].canTouch(this.people[j].getCollisions()))
+                this.touchables[i].activate();
+    }
 
+    // do collision checking
     for(var i = 0; i < this.people.length; i++)
     {
         this.people[i].tick();
@@ -213,11 +233,11 @@ Level.prototype.tick = function()
             {
                 var collisionBox = this.collidables[k].getCollisionBox();
 
-                var valid_x = this.people[i].getValidX();
-                var valid_y = this.people[i].getValidY();
-
                 if(!collisionBox)
                     continue;
+
+                var valid_x = this.people[i].getValidX();
+                var valid_y = this.people[i].getValidY();
 
                 var col_x = valid_y >= collisionBox[1] &&
                             valid_y <= collisionBox[3] &&
@@ -245,14 +265,10 @@ Level.prototype.tick = function()
                         this.people[i].rollbackY();
                 }
             }
-
         }
 
         this.people[i].setPositionAsValid();
 
-        for(var j = 0; j < this.touchables.length; j++)
-            if(this.touchables[j].canTouch(this.people[i].getCollisions()))
-                this.touchables[j].activate();
     }
 }
 

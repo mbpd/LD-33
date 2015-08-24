@@ -36,6 +36,8 @@ red_to_tile = {
 green_to_marker= {
     0: "SPAWN",
     1: "C4",
+    250: "TRIGGERPAD",
+    251: "STEELDOOR",
     252: "GUARD_CATCH",
     253: "NPC",
     254: "METRO",
