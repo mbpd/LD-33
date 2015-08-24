@@ -21,7 +21,9 @@ var imagesToLoad = [
     "inactive_pad",
     "active_pad",
     "computer_gui",
-    "computer"
+    "computer",
+    "guard_left",
+    "guard_right",
 ]
 
 var images = {};

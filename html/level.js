@@ -63,6 +63,11 @@ function Level(tilemap, markers)
             this.drawables.push(computer);
             this.interactibles.push(computer);
         }
+        else if(markerType.startsWith("GUARD_CATCH"))
+        {
+            var npc = new NPC(markerX + TILE_SIZE/2, markerY + TILE_SIZE/2, images.guard_left, images.guard_right, new GuardCatchNPCScript(this));
+            this.addNPC(npc);
+        }
     }
 
     this.cursor = images.cursor_default;

@@ -127,7 +127,7 @@ NPC.prototype.getCollisions = function()
     if(this.dead)
         return [];
 
-    return [[this.x, this.y]];
+    return [[this.x, this.y], [this.x - 12, this.y], [this.x + 12, this.y], [this.x, this.y + 5]];
 }
 
 NPC.prototype.kill = function()
