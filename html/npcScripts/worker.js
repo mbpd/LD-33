@@ -5,7 +5,7 @@ function WorkerNPCScript()
     this.level = null;
     this.ALERT_OFFSET = -100;
 
-    this.MIN_DISTANCE = Math.pow(16, 2);
+    this.MIN_DISTANCE = Math.pow(32, 2);
     this.MAX_DISTANCE = Math.pow(400, 2);
 }
 

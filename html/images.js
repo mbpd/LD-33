@@ -24,6 +24,7 @@ var imagesToLoad = [
     "computer",
     "guard_left",
     "guard_right",
+    "explosion",
 ]
 
 var images = {};

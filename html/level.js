@@ -154,6 +154,10 @@ Level.prototype.tick = function()
         var C4_x = this.c4Marker.getCenterX();
         var C4_y = this.c4Marker.getCenterY();
 
+        // spawn explosion
+        var explosion = new Explosion(C4_x, C4_y);
+        this.drawables.push(explosion);
+
         var alivePeople = [];
 
         // kill everyone!...
