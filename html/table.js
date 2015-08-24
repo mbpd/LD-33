@@ -29,7 +29,7 @@ Table.prototype.generateImage = function()
 
 Table.prototype.draw = function()
 {
-    if(!this.destroy)
+    if(!this.destroyed)
         ctx.drawImage(this.img, this.x + this.ox, this.y + this.oy);
 }
 
