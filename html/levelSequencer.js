@@ -1,4 +1,14 @@
+var nextLevel = 0;
+
 function getNextLevel()
 {
-    return 0;
+    var val = nextLevel;
+    nextLevel++;
+
+    return val;
+}
+
+function resetLevelSequencer()
+{
+    nextLevel = 0;
 }
