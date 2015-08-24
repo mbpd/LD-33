@@ -240,17 +240,6 @@ Level.prototype.tick = function()
                 if(!collisionBox)
                     continue;
 
-                if(this.collidables[k].turnOn)
-                {
-                    var collpoints = this.people[i].getCollisions();
-                    for(var l = 0; l < collpoints.length; l++)
-                        if(collpoints[l][0] >= collisionBox[0] &&
-                            collpoints[l][1] >= collisionBox[1] &&
-                            collpoints[l][0] <= collisionBox[2] &&
-                            collpoints[l][1] <= collisionBox[3])
-                            this.people[i].kill();
-                }
-
                 var valid_x = this.people[i].getValidX();
                 var valid_y = this.people[i].getValidY();
 
@@ -283,7 +272,24 @@ Level.prototype.tick = function()
         }
 
         this.people[i].setPositionAsValid();
+    }
 
+    for(var i = 0; i < this.people.length; i++)
+    {
+        var collisions = this.people[i].getCollisions();
+        for(var k = 0; k < this.triggerable.length; k++)
+        {
+            var collisionBox = this.triggerable[k].getCollisionBox();
+            for(var j = 0; j < collisions.length; j++)
+            {
+                if(collisionBox)
+                    if(collisions[j][0] >= collisionBox[0] &&
+                        collisions[j][1] >= collisionBox[1] &&
+                        collisions[j][0] <= collisionBox[2] &&
+                        collisions[j][1] <= collisionBox[3])
+                        this.people[i].kill();
+            }
+        }
     }
 }
 
