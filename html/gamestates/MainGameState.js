@@ -6,6 +6,8 @@ function MainGameState(level)
     this.showingMessage = false;
     this.message = null;
     this.old_cursor = null;
+
+    this.tt = 0;
 }
 
 MainGameState.prototype.render = function ()
@@ -32,6 +34,9 @@ MainGameState.prototype.render = function ()
             this.drawTimer(C4Timer)
 
         this.drawKillcount(killcount, combo);
+
+        if(this.level.getPlayer().dead && this.tt > 1)
+            this.fadeout(this.tt - 1);
     }
 }
 
@@ -74,13 +79,31 @@ MainGameState.prototype.drawKillcount = function(kills, combo)
     ctx.fillText(kills, width - 40, 20);
 }
 
+MainGameState.prototype.fadeout = function(tt)
+{
+    ctx.save();
+    ctx.globalAlpha = tt;
+    ctx.fillStyle = "#000000"
+    ctx.fillRect(0, 0, width, height);
+    ctx.restore();
+}
+
 MainGameState.prototype.tick = function()
 {
     if(this.showingMessage)
         return;
 
+    if(this.level.getPlayer().dead)
+    {
+        this.tt += 0.0030;
+
+        if(this.tt > 2)
+            switchState(new CutSceneState(new DeathCutScene()));
+    }
     this.level.tick();
     this.cursor = this.level.getCursor();
+
+
 }
 
 MainGameState.prototype.keyboardHandler = function(evt)
