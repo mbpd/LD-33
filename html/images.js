@@ -30,6 +30,7 @@ var imagesToLoad = [
     "death_screen",
     "burn0",
     "body",
+    "windows",
 ]
 
 var images = {};

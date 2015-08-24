@@ -42,6 +42,7 @@ red_to_tile = {
 green_to_marker= {
     0: "SPAWN",
     1: "C4",
+    247: "WINDOWS",
     248: "TABLE_UP",
     249: "TABLE_DOWN",
     250: "TRIGGERPAD",

@@ -90,6 +90,12 @@ function Level(tilemap, markers)
             this.drawables.push(t);
             this.collidables.push(t);
         }
+        else if(markerType == "WINDOWS")
+        {
+            var w = new Windows(markerX, markerY);
+            this.drawables.push(w);
+            this.interactibles.push(w);
+        }
     }
 
     this.cursor = images.cursor_default;
