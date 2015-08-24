@@ -7,6 +7,9 @@ function Level(tilemap, markers)
 
     this.people = [];
 
+    this.touchables = [];
+    this.triggerable = [];
+
     this.entities = [];
     this.interactibles = [];
     this.collidables = [];
@@ -50,7 +53,7 @@ function Level(tilemap, markers)
         }
         else if(markerType == "NPC")
         {
-            var npc = new NPC(markerX + TILE_SIZE/2, markerY + TILE_SIZE/2, images.npc_left, images.npc_right, new WorkerNPCScript());
+            var npc = new NPC(markerX, markerY, images.npc_left, images.npc_right, new WorkerNPCScript());
             this.addNPC(npc);
         }
     }
@@ -103,6 +106,19 @@ Level.prototype.addNPC = function(npc)
     this.interactibles.push(npc);
 }
 
+Level.prototype.addTouchable = function(touchable)
+{
+    this.touchables.push(touchable);
+    this.drawables.push(touchable);
+}
+
+Level.prototype.addTriggerable = function(triggerable)
+{
+    this.triggerable.push(triggerable);
+    this.drawables.push(triggerable);
+    this.collidables.push(triggerable);
+}
+
 Level.prototype.tick = function()
 {
     if(this.C4Timer)
@@ -121,6 +137,9 @@ Level.prototype.tick = function()
             break;
         }
     }
+
+    for(var i = 0; i < this.touchables.length; i++)
+        this.touchables[i].deactivate();
 
     for(var i = 0; i < this.people.length; i++)
     {
@@ -189,7 +208,12 @@ Level.prototype.tick = function()
             }
 
         }
+
         this.people[i].setPositionAsValid();
+
+        for(var j = 0; j < this.touchables.length; j++)
+            if(this.touchables[j].canTouch(this.people[i].getCollisions()))
+                this.touchables[j].activate();
     }
 }
 

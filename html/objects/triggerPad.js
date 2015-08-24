@@ -14,8 +14,11 @@ triggerPad.prototype.activate = function()
     this.active = true;
     this.image = images.active_pad;
 
-    if(this.geaNearesttTriggerable())
-        this.getNearestTriggerable().turnOn();
+    var near = this.getNearestTriggerable();;
+    if(near != -1)
+    {
+        gameState.level.triggerable[near].turnOn();
+    }
 }
 
 triggerPad.prototype.deactivate = function()
@@ -23,8 +26,11 @@ triggerPad.prototype.deactivate = function()
     this.active = false;
     this.image = images.inactive_pad;
 
-    if(this.geaNearesttTriggerable())
-        this.getNearestTriggerable().turnOff();
+    var near = this.getNearestTriggerable();;
+    if(near != -1)
+    {
+        gameState.level.triggerable[near].turnOff();
+    }
 }
 
 triggerPad.prototype.toogle = function()
@@ -40,15 +46,49 @@ triggerPad.prototype.toogle = function()
 
 triggerPad.prototype.getCenterX = function ()
 {
-    return x + ox/2;
+    return this.x + this.ox/2;
 }
 
 triggerPad.prototype.getCenterY = function()
 {
-    return y + oy/2;
+    return this.y + this.oy/2;
 }
 
 triggerPad.prototype.draw = function()
 {
     ctx.drawImage(this.image, this.x + this.ox, this.y + this.oy);
+}
+
+triggerPad.prototype.canTouch = function(collisions)
+{
+    for(var i = 0; i < collisions.length; i++){
+        if(collisions[i][0]>= this.x+this.ox && collisions[i][0]<= this.x && collisions[i][1] >= this.y+this.oy && collisions[i][1] <= this.y)
+        return true;
+    }
+
+    return false;
+}
+
+triggerPad.prototype.getNearestTriggerable = function()
+{
+   var nearest = -1;
+   for(var i = 0; i < gameState.level.triggerable.length; i++)
+   {
+       if(nearest == -1) {
+           nearest = 0;
+           continue;
+       }
+
+       if(this.getDistance(gameState.level.triggerable[i].getCenterX(), gameState.level.triggerable[i].getCenterY()) < this.getDistance(gameState.level.triggerable[nearest].getCenterX(), gameState.level.triggerable[nearest].getCenterY()))
+            nearest = i;
+   }
+
+   return nearest;
+}
+
+triggerPad.prototype.getDistance = function(x,y)
+{
+
+    return (Math.pow(x - this.getCenterX(), 2) + Math.pow(y - this.getCenterY(), 2));
+
 }
