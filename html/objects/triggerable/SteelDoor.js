@@ -26,7 +26,7 @@ SteelDoor.prototype.turnOff = function()
     this.collisionBox = [this.x + this.ox, this.y + this.oy, this.x, this.y];
 }
 
-SteelDoor.prototype.toogle = function()
+SteelDoor.prototype.toggle = function()
 {
     this.triggered = !this.triggered;
     this.image = this.triggered ? images.steeldoor_open : images.steeldoor_closed;
