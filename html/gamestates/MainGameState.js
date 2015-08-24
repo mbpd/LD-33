@@ -35,7 +35,8 @@ MainGameState.prototype.render = function ()
 
         this.drawKillcount(killcount, combo);
 
-        if(this.level.getPlayer().dead || this.level.getPlayer().arrested && this.tt > 1)
+        if((this.level.getPlayer().dead || this.level.getPlayer().arrested)
+            && this.tt > 1)
             this.fadeout(this.tt - 1);
     }
 }
