@@ -25,6 +25,7 @@ C4Marker.prototype.use = function(level)
 {
     if(level.c4Timer === undefined && !level.c4Exploded)
     {
+        playMusic("music/timer.ogg");
         this.used = true;
         level.startC4Timer();
     }

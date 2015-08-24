@@ -19,8 +19,6 @@ WinGame.prototype.render = function()
     ctx.font = "30px Monospace";
     ctx.fillText("You Monster!", width/2, 240 + 60 + 40);
     ctx.fillText("You have killed " + killcount + " (" + killcount*100/maxKills + "%) innocent people!", width/2, 240 + 60 + 80);
-
-
 }
 
 WinGame.prototype.tick = function()
