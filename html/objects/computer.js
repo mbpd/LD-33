@@ -6,7 +6,7 @@ var messages = {
 function Computer(x, y, message_id)
 {
     this.x = x + TILE_SIZE;
-    this.y = y + TILE_SIZE;
+    this.y = y + TILE_SIZE + 2;
 
     // drawing offsets
     this.ox = -TILE_SIZE;
@@ -20,7 +20,7 @@ function Computer(x, y, message_id)
 Computer.prototype.draw = function()
 {
     if(!this.destroyed)
-        ctx.drawImage(images.computer, this.x + this.ox, this.y + this.oy - 35);
+        ctx.drawImage(images.computer, this.x + this.ox, this.y + this.oy - 37);
 }
 
 Computer.prototype.canUse = function(x, y)
