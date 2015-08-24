@@ -112,5 +112,6 @@ triggerPad.prototype.getDistance = function(x,y)
 
 triggerPad.prototype.destroy = function()
 {
+    this.deactivate();
     this.destroyed = true;
 }
