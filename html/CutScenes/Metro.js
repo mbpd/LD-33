@@ -26,41 +26,44 @@ function MetroCutScene()
 
 MetroCutScene.prototype.render = function ()
 {
-    for(var i = 0; i < 7; i++) 
-        ctx.drawImage(this.background, 0, Math.round((this.y%100)-100 + i * 100));
+    if(this.level){
+        for(var i = 0; i < 7; i++) 
+            ctx.drawImage(this.background, 0, Math.round((this.y%100)-100 + i * 100));
 
-    ctx.drawImage(this.light, 0, 0);
-    ctx.drawImage(this.station, 0, this.y);
-    ctx.drawImage(this.station, 0, this.y - this.DIST);
-    ctx.drawImage(this.metro, (width/2),80);
+        ctx.drawImage(this.light, 0, 0);
+        ctx.drawImage(this.station, 0, this.y);
+        ctx.drawImage(this.station, 0, this.y - this.DIST);
+        ctx.drawImage(this.metro, (width/2),80);
 
-    var dif = currentFrame - this.startFrame;
+        var dif = currentFrame - this.startFrame;
 
-    if(dif > 120 && dif < 120 + 300)
-    {
-        dif -= 120;
+        if(dif > 120 && dif < 120 + 300)
+        {
+            dif -= 120;
 
-        var factor = -0.00004444 * Math.pow(dif, 2) + 0.01333 * dif;
+            var factor = -0.00004444 * Math.pow(dif, 2) + 0.01333 * dif;
 
-        ctx.globalAlpha = factor;
-        ctx.fillStyle = "#00FF00";
-        ctx.font = "20px Monospace"
-        ctx.textAlign = "right";
+            ctx.globalAlpha = factor;
+            ctx.fillStyle = "#00FF00";
+            ctx.font = "20px Monospace"
+            ctx.textAlign = "right";
 
-        ctx.fillText("Objective: C4 " + this.levelName + "'s server room", width - 50, height - 50);
-        ctx.fillText(this.hours + ":" + this.minutes +  " AM", width - 50, height - 70);
+            ctx.fillText("Objective: C4 " + this.levelName + "'s server room", width - 50, height - 50);
+            ctx.fillText(this.hours + ":" + this.minutes +  " AM", width - 50, height - 70);
+        }
     }
 }
 
 MetroCutScene.prototype.tick = function() 
 {
-    var t = Math.pow(this.counter, 5)/10;
-    this.y = (Math.pow((1 + (1/t)), t)-1) * this.DIST / (Math.E-1);
-    this.counter += 0.01;
+    if(this.level) {
+        var t = Math.pow(this.counter, 5)/10;
+        this.y = (Math.pow((1 + (1/t)), t)-1) * this.DIST / (Math.E-1);
+        this.counter += 0.01;
 
-    if((this.DIST -  this.y) < 30)
-        this.stop();
-
+        if((this.DIST -  this.y) < 30)
+            this.stop();
+    }
 }
 
 MetroCutScene.prototype.stop = function()
@@ -70,5 +73,8 @@ MetroCutScene.prototype.stop = function()
 
 MetroCutScene.prototype.switchState = function()
 {
-    switchState(new MainGameState(new Level(tilemaps[this.level],markers[this.level]))); 
+    if(this.level)
+        switchState(new MainGameState(new Level(tilemaps[this.level],markers[this.level]))); 
+    else
+        switchState(new CutSceneState(new WinGame()));
 }

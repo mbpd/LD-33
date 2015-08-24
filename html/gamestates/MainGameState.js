@@ -35,7 +35,7 @@ MainGameState.prototype.render = function ()
 
         this.drawKillcount(killcount, combo);
 
-        if(this.level.getPlayer().dead && this.tt > 1)
+        if(this.level.getPlayer().dead || this.level.getPlayer().arrested && this.tt > 1)
             this.fadeout(this.tt - 1);
     }
 }
@@ -100,7 +100,17 @@ MainGameState.prototype.tick = function()
         if(this.tt > 2)
             switchState(new CutSceneState(new DeathCutScene()));
     }
-    this.level.tick();
+
+    if(this.level.getPlayer().arrested)
+    {
+        this.tt += 0.003;
+
+        if(this.tt > 2)
+            switchState(new CutSceneState(new JailCutScene()));
+    }
+    else
+        this.level.tick();
+
     this.cursor = this.level.getCursor();
 
 

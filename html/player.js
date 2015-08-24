@@ -16,6 +16,7 @@ function Player(x, y)
     this.image = images["stallman_left"];
 
     this.dead = false;
+    this.arrested = false;
 }
 
 Player.prototype.moveLeft = function(start)
@@ -124,4 +125,11 @@ Player.prototype.kill = function()
 {
     if(!this.dead)
         this.dead = true;
+}
+
+Player.prototype.arrest = function()
+{
+    if(!this.arrested)
+        this.arrested = true;
+
 }

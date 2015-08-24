@@ -6,6 +6,7 @@ function GuardCatchNPCScript(level)
     this.ALERT_OFFSET = -100;
 
     this.MIN_DISTANCE = Math.pow(4, 2);
+    this.CATCH_DISTANCE = Math.pow(6, 2);
     this.MAX_START_DISTANCE = Math.pow(200, 2);
     this.MAX_STOP_DISTANCE = Math.pow(800, 2);
 }
@@ -77,6 +78,9 @@ GuardCatchNPCScript.prototype.tick = function(npc)
                 npc.rollbackY();
             }
         }
+
+        if(dist <= this.CATCH_DISTANCE)
+            gameState.level.getPlayer().arrest();
 
     }
 }
