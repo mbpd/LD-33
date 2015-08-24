@@ -240,6 +240,17 @@ Level.prototype.tick = function()
                 if(!collisionBox)
                     continue;
 
+                if(this.collidables[k].turnOn)
+                {
+                    var collpoints = this.people[i].getCollisions();
+                    for(var l = 0; l < collpoints.length; l++)
+                        if(collpoints[l][0] >= collisionBox[0] &&
+                            collpoints[l][1] >= collisionBox[1] &&
+                            collpoints[l][0] <= collisionBox[2] &&
+                            collpoints[l][1] <= collisionBox[3])
+                            this.people[i].kill();
+                }
+
                 var valid_x = this.people[i].getValidX();
                 var valid_y = this.people[i].getValidY();
 
