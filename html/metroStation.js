@@ -27,7 +27,7 @@ MetroStation.prototype.use = function(level)
 {
     if(level.C4Timer === 0)
     {
-       switchState(new CutSceneState(new MetroCutScene(images["metro"], images["station"], images["background"], images["light"])));
+        switchState(new CutSceneState(new MetroCutScene(images["metro"], images["station"], images["background"], images["light"])));
     }
 }
 

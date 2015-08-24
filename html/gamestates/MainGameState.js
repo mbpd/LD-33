@@ -106,7 +106,7 @@ MainGameState.prototype.tick = function()
     {
         this.tt += 0.0030;
 
-        if(this.tt > 2)
+        if(this.tt > 1)
             switchState(new CutSceneState(new DeathCutScene()));
     }
 

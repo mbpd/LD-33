@@ -1,5 +1,6 @@
 function EndGame()
 {
+    this.level = 0;
     this.start = new Date().getTime();
     this.delta = 0;
     this.over = false;
@@ -19,6 +20,8 @@ EndGame.prototype.tick = function()
 {
 
     this.delta = new Date().getTime() - this.start;
+    console.log("END")
+    console.log(this.delta);
     if(this.delta > 2000)
         this.stop();
 }

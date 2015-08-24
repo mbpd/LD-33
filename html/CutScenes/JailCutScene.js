@@ -1,5 +1,6 @@
 function JailCutScene()
 {
+    this.level = 0;
     this.start = new Date().getTime();
     this.delta = 0;
     this.over = false;
@@ -17,9 +18,11 @@ JailCutScene.prototype.render = function()
 
 JailCutScene.prototype.tick = function()
 {
+    console.log("JAIL");
 
     this.delta = new Date().getTime() - this.start;
-    if(this.delta > 2000)
+    console.log(this.delta);
+    if(this.delta > 200)
         this.stop();
 }
 
