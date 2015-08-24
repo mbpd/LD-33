@@ -25,20 +25,24 @@ function NPC(x, y, left_image, right_image, NPCScript)
 NPC.prototype.draw = function()
 {
     if(this.dead)
-        return;
-
-    var jumpHeight = 0;
-    if(this.jumping)
     {
-        var jump = Math.round((currentFrame+this.jumpOffset)/7) % 3 == 0;
-
-        if(jump)
-            jumpHeight += 5;
+        ctx.drawImage(images.body, this.x - this.image.width/2, this.y - this.image.height/2 + this.CHAR_HEIGHT - jumpHeight);
     }
+    else
+    {
+        var jumpHeight = 0;
+        if(this.jumping)
+        {
+            var jump = Math.round((currentFrame+this.jumpOffset)/7) % 3 == 0;
 
-    ctx.drawImage(this.image, this.x - this.image.width/2, this.y - this.image.height/2 + this.CHAR_HEIGHT - jumpHeight);
+            if(jump)
+                jumpHeight += 5;
+        }
 
-    this.script.draw(this);
+        ctx.drawImage(this.image, this.x - this.image.width/2, this.y - this.image.height/2 + this.CHAR_HEIGHT - jumpHeight);
+
+        this.script.draw(this);
+    }
 }
 
 NPC.prototype.tick = function()

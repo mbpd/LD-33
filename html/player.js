@@ -98,17 +98,21 @@ Player.prototype.tick = function(start)
 
 Player.prototype.draw = function()
 {
-    if(this.dead)
-        return;
-
-    var jump = Math.round(currentFrame/7) % 3 == 0;
-
     var charHeight = 30;
-    if(jump &&
-      (this.movingLeft + this.movingRight == 1 ||
-       this.movingUp   + this.movingDown  == 1))
-       charHeight += 5;
-    ctx.drawImage(this.image, this.x -this.image.width/2, this.y -this.image.height/2 - charHeight);
+    if(this.dead)
+    {
+        ctx.drawImage(images.body, this.x - this.image.width/2, this.y - this.image.height/2 - charHeight);
+    }
+    else
+    {
+        var jump = Math.round(currentFrame/7) % 3 == 0;
+
+        if(jump &&
+          (this.movingLeft + this.movingRight == 1 ||
+           this.movingUp   + this.movingDown  == 1))
+           charHeight += 5;
+        ctx.drawImage(this.image, this.x -this.image.width/2, this.y -this.image.height/2 - charHeight);
+    }
 }
 
 Player.prototype.getCollisions = function()
