@@ -21,22 +21,21 @@ function MetroCutScene(metro, station, background, light)
         this.minutes = "0" + this.minutes;
 
     // Hacky way to get the level's id
-    var levelId = 0;
+    /*var levelId = 0;
     for(var i = 0; i < tilemaps.length; i++)
     {
-        if(level.tilemap == tilemaps[i])
+        if(this.level.tilemap == tilemaps[i])
         {
             levelId = i;
             break;
         }
     }
 
-    this.levelName = names[levelId];
+    this.levelName = names[levelId];*/
 }
 
 MetroCutScene.prototype.render = function ()
 {
-
     for(var i = 0; i < 7; i++) 
         ctx.drawImage(this.background, 0, Math.round((this.y%100)-100 + i * 100));
 
@@ -58,7 +57,8 @@ MetroCutScene.prototype.render = function ()
         ctx.font = "20px Monospace"
         ctx.textAlign = "right";
 
-        ctx.fillText("Objective: C4 " + this.levelName + "'s server room", width - 50, height - 50);
+        //ctx.fillText("Objective: C4 " + this.levelName + "'s server room", width - 50, height - 50);
+        ctx.fillText("Objective: C4 the server room", width - 50, height - 50);
         ctx.fillText(this.hours + ":" + this.minutes +  " AM", width - 50, height - 70);
     }
 }
