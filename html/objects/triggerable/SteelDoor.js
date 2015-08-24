@@ -30,7 +30,7 @@ SteelDoor.prototype.toggle = function()
 
 SteelDoor.prototype.draw = function ()
 {
-   ctx.drawImage(this.image, this.x + this.ox, this.y + this.oy); 
+   ctx.drawImage(this.image, this.x + this.ox, this.y + this.oy - 64); 
 }
 
 SteelDoor.prototype.getCenterX = function()
