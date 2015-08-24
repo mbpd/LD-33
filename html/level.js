@@ -108,6 +108,10 @@ function Level(tilemap, markers)
 
     this.next_use = null;
     this.USE_RANGE = 150;
+
+    deathC4 = false;
+    deathDoor = false;
+    deathSuicide = false;
 }
 
 function compareByPosition(a, b)
@@ -192,7 +196,12 @@ Level.prototype.tick = function()
 
             // ... in range
             if(dist < C4_KILL_DISTANCE)
+            {
+                if(person == this.player)
+                    deathC4 = true;
+
                 person.kill();
+            }
             else
                 alivePeople.push(person);
         }
@@ -308,6 +317,7 @@ Level.prototype.tick = function()
         this.people[i].setPositionAsValid();
     }
 
+    // kill people on steel doors when they close
     for(var i = 0; i < this.people.length; i++)
     {
         var collisions = this.people[i].getCollisions();
@@ -321,7 +331,10 @@ Level.prototype.tick = function()
                         collisions[j][1] >= collisionBox[1] &&
                         collisions[j][0] <= collisionBox[2] &&
                         collisions[j][1] <= collisionBox[3])
+                    {
                         this.people[i].kill();
+                        deathDoor = true;
+                    }
             }
         }
     }

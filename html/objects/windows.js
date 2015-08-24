@@ -23,6 +23,7 @@ Windows.prototype.canUse = function(x, y)
 
 Windows.prototype.use = function()
 {
+    deathSuicide = true;
     gameState.level.getPlayer().kill();
 }
 
