@@ -5,6 +5,8 @@ function EndGame()
     this.delta = 0;
     this.over = false;
     this.background = images.death_screen;
+
+    killcount = 0;
 }
 
 EndGame.prototype.render = function()
