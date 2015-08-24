@@ -49,6 +49,8 @@ markers = "markers[" + level_index + "] = ["
 
 for y in range(height):
     for x in range(width):
+        CURX = x
+        CURY = y
         data = image.getpixel((x, y))
 
         if data[0] == 0:
