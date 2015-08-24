@@ -149,7 +149,7 @@ Level.prototype.tick = function()
     // explode the c4 if the timer has reached 0 :DD
     if(this.C4Timer === 0 && !this.c4Exploded)
     {
-        var C4_KILL_DISTANCE = Math.pow(800, 2);
+        var C4_KILL_DISTANCE = Math.pow(450, 2);
 
         var C4_x = this.c4Marker.getCenterX();
         var C4_y = this.c4Marker.getCenterY();
