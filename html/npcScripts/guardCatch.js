@@ -17,7 +17,7 @@ GuardCatchNPCScript.prototype.draw = function(npc)
 
 GuardCatchNPCScript.prototype.tick = function(npc)
 {
-    //npc.MOVE_SPEED = 6;
+    npc.MOVE_SPEED = 6;
 
     var dist = Math.pow(npc.x - this.level.player.x, 2) + Math.pow(npc.y - this.level.player.y, 2);
 
@@ -82,7 +82,7 @@ GuardCatchNPCScript.prototype.tick = function(npc)
 
 GuardCatchNPCScript.prototype.canUse = function(npc, x, y)
 {
-    return true;
+    return false;
 }
 
 GuardCatchNPCScript.prototype.use = function(npc, level)
