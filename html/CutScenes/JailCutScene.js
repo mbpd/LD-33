@@ -11,9 +11,14 @@ JailCutScene.prototype.render = function()
 {
     ctx.drawImage(this.background, 0, 0);
     ctx.fillStyle = "#FF0000";
-    ctx.font = "30px Monotone";
+    ctx.font = "50px Monospace";
+    ctx.textAlign = "center";
 
-    ctx.fillText("Jail", width/2 - 50, height/2);
+    ctx.fillText("Jail", width/2, 242);
+
+    ctx.font = "30px Monospace";
+    ctx.fillText("You've been jailed", width/2, 240 + 60 );
+
 }
 
 JailCutScene.prototype.tick = function()

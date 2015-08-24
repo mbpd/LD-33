@@ -1,4 +1,4 @@
-var maxKills = 16;
+var maxKills = 34;
 var killcount = 0;
 var combo = 0;
 var lastComboFrame = -420;

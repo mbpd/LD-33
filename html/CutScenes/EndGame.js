@@ -10,10 +10,15 @@ function EndGame()
 EndGame.prototype.render = function()
 {
     ctx.drawImage(this.background, 0, 0);
-    ctx.fillStyle = "#FF0000";
-    ctx.font = "30px Monotone";
+    ctx.fillStyle = "#0000FF";
+    ctx.font = "50px Monospace";
+    ctx.textAlign = "center";
 
-    ctx.fillText("End", width/2 - 50, height/2);
+    ctx.fillText("End", width/2, 242);
+
+    ctx.font = "30px Monospace";
+    ctx.fillText("You're a Monster", width/2, 240 + 60 + 40);
+
 }
 
 EndGame.prototype.tick = function()

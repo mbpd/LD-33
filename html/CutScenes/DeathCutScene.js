@@ -21,7 +21,7 @@ function DeathCutScene()
 DeathCutScene.prototype.render = function()
 {
     ctx.drawImage(this.background, 0, 0);
-    ctx.fillStyle = "#00FF00";
+    ctx.fillStyle = "#FF0000";
     ctx.font = "50px Monospace";
     ctx.textAlign = "center";
 

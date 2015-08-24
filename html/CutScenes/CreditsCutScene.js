@@ -12,10 +12,11 @@ function CreditsCutScene()
 CreditsCutScene.prototype.render = function()
 {
     ctx.drawImage(this.background, 0, 0);
-    ctx.fillStyle = "#FF0000";
-    ctx.font = "30px Monotone";
+    ctx.fillStyle = "#00FF00";
+    ctx.font = "50px MonoSpace";
+    ctx.textAlign = "center";
 
-    ctx.fillText("Credits", width/2 - 50, height/2);
+    ctx.fillText("Credits", width/2, 242);
 }
 
 CreditsCutScene.prototype.tick = function()
