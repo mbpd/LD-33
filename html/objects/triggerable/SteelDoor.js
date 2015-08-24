@@ -14,7 +14,7 @@ function SteelDoor(x, y)
     this.drawX = this.x + this.ox;
     this.drawY = this.y + this.oy - 64;
 
-    this.collisionBox = [this.x + this.ox, this.y + this.oy, this.x, this.y];
+    this.collisionBox = [this.x + this.ox + 2, this.y + this.oy - 32, this.x - 2, this.y + 32];
 
     this.realX = this.x;
     this.realY = this.y;
