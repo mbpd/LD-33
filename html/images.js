@@ -31,6 +31,10 @@ var imagesToLoad = [
     "burn0",
     "body",
     "windows",
+    "servers0",
+    "servers1",
+    "servers2",
+    "servers3",
 ]
 
 var images = {};
