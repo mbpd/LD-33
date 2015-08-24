@@ -10,7 +10,7 @@ function addKill()
     if(lastComboFrame + 60 * COMBO_SECONDS > currentFrame)
         combo++;
     else
-        combo = 0;
+        combo = 1;
 
     lastComboFrame = currentFrame;
 }
