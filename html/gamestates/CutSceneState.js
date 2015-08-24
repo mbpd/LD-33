@@ -26,8 +26,7 @@ CutSceneState.prototype.tick = function()
 
     if(this.tt > 1)
     {
-        var level = getNextLevel();
-        this.cutScene.switchState(level);
+        this.cutScene.switchState();
     }
 }
 

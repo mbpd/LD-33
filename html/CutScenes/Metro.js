@@ -20,18 +20,8 @@ function MetroCutScene()
     if(this.minutes < 10)
         this.minutes = "0" + this.minutes;
 
-    // Hacky way to get the level's id
-    /*var levelId = 0;
-    for(var i = 0; i < tilemaps.length; i++)
-    {
-        if(this.level.tilemap == tilemaps[i])
-        {
-            levelId = i;
-            break;
-        }
-    }
-
-    this.levelName = names[levelId];*/
+    this.level = getNextLevel();
+    this.levelName = names[this.level];
 }
 
 MetroCutScene.prototype.render = function ()
@@ -57,8 +47,7 @@ MetroCutScene.prototype.render = function ()
         ctx.font = "20px Monospace"
         ctx.textAlign = "right";
 
-        //ctx.fillText("Objective: C4 " + this.levelName + "'s server room", width - 50, height - 50);
-        ctx.fillText("Objective: C4 the server room", width - 50, height - 50);
+        ctx.fillText("Objective: C4 " + this.levelName + "'s server room", width - 50, height - 50);
         ctx.fillText(this.hours + ":" + this.minutes +  " AM", width - 50, height - 70);
     }
 }
@@ -79,7 +68,7 @@ MetroCutScene.prototype.stop = function()
     this.over = true;
 }
 
-MetroCutScene.prototype.switchState = function(level)
+MetroCutScene.prototype.switchState = function()
 {
-    switchState(new MainGameState(new Level(tilemaps[level],markers[level]))); 
+    switchState(new MainGameState(new Level(tilemaps[this.level],markers[this.level]))); 
 }
