@@ -24,8 +24,6 @@ var imagesToLoad = [
     "computer",
     "guard_left",
     "guard_right",
-=======
->>>>>>> Stashed changes
 ]
 
 var images = {};
