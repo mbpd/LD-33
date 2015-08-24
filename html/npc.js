@@ -18,11 +18,15 @@ function NPC(x, y, left_image, right_image, NPCScript)
 
     this.jumping = false;
     this.jumpOffset = Math.floor(Math.random() * 100);
-    console.log(this.jumpOffset);
+
+    this.dead = false;
 }
 
 NPC.prototype.draw = function()
 {
+    if(this.dead)
+        return;
+
     var jumpHeight = 0;
     if(this.jumping)
     {
@@ -39,6 +43,9 @@ NPC.prototype.draw = function()
 
 NPC.prototype.tick = function()
 {
+    if(this.dead)
+        return;
+
     this.script.tick(this);
     if(this.x != this.valid_x || this.y != this.valid_y)
         this.jumping = true;
@@ -58,6 +65,9 @@ NPC.prototype.turnRight = function()
 
 NPC.prototype.canUse = function(x, y)
 {
+    if(this.dead)
+        return false;
+
     var distCheck = x >= this.x - this.image.width/2 &&
                     x <= this.x + this.image.width/2 &&
                     y >= this.y - this.image.height/2 + this.CHAR_HEIGHT &&
@@ -70,7 +80,9 @@ NPC.prototype.canUse = function(x, y)
 
 NPC.prototype.use = function(level)
 {
-    console.log(level);
+    if(this.dead)
+        return;
+
     this.script.use(this, level);
 }
 
@@ -112,5 +124,17 @@ NPC.prototype.getCenterY = function()
 
 NPC.prototype.getCollisions = function()
 {
+    if(this.dead)
+        return [];
+
     return [[this.x, this.y]];
+}
+
+NPC.prototype.kill = function()
+{
+    if(!this.dead)
+    {
+        this.dead = true;
+        addKill();
+    }
 }

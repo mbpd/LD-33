@@ -14,10 +14,15 @@ function Player(x, y)
     this.movingDown = false;
 
     this.image = images["stallman_left"];
+
+    this.dead = false;
 }
 
 Player.prototype.moveLeft = function(start)
 {
+    if(this.dead)
+        return;
+
     this.movingLeft = start;
     if(start)
         this.image = images["stallman_left"];
@@ -25,6 +30,9 @@ Player.prototype.moveLeft = function(start)
 
 Player.prototype.moveRight = function(start)
 {
+    if(this.dead)
+        return;
+
     this.movingRight = start;
     if(start)
         this.image = images["stallman_right"];
@@ -32,11 +40,17 @@ Player.prototype.moveRight = function(start)
 
 Player.prototype.moveDown = function(start)
 {
+    if(this.dead)
+        return;
+
     this.movingDown = start;
 }
 
 Player.prototype.moveUp = function(start)
 {
+    if(this.dead)
+        return;
+
     this.movingUp = start;
 }
 
@@ -68,6 +82,9 @@ Player.prototype.rollbackY = function()
 
 Player.prototype.tick = function(start)
 {
+    if(this.dead)
+        return;
+
     if(this.movingLeft)
         this.x -= this.MOVE_SPEED;
     if(this.movingRight)
@@ -81,6 +98,9 @@ Player.prototype.tick = function(start)
 
 Player.prototype.draw = function()
 {
+    if(this.dead)
+        return;
+
     var jump = Math.round(currentFrame/7) % 3 == 0;
 
     var charHeight = 30;
@@ -94,4 +114,10 @@ Player.prototype.draw = function()
 Player.prototype.getCollisions = function()
 {
     return [[this.x - 14, this.y - 4], [this.x - 14, this.y + 8], [this.x + 14, this.y - 4], [this.x + 14, this.y + 8]];
+}
+
+Player.prototype.kill = function()
+{
+    if(!this.dead)
+        this.dead = true;
 }

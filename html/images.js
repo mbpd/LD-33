@@ -20,6 +20,8 @@ var imagesToLoad = [
     "steeldoor_open",
     "inactive_pad",
     "active_pad",
+    "computer_gui",
+    "computer"
 ]
 
 var images = {};
