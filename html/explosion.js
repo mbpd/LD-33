@@ -22,7 +22,7 @@ Explosion.prototype.draw = function()
     ctx.drawImage(images.explosion, this.x - size/2, this.y - size/2, size, size);
     ctx.restore();
 
-    var BURN_COUNT = 50;
+    var BURN_COUNT = 15;
     for(var i = 0; i < BURN_COUNT; i++)
     {
         var angle = Math.random() * 2 * Math.PI;
