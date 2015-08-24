@@ -8,8 +8,12 @@ function triggerPad(x, y)
 
 triggerPad.prototype.activate = function()
 {
+    if(this.destroyed)
+        return;
+
     if(this.active)
         return;
+
     this.active = true;
     this.image = images.active_pad;
 
@@ -22,6 +26,9 @@ triggerPad.prototype.activate = function()
 
 triggerPad.prototype.deactivate = function()
 {
+    if(this.destroyed)
+        return;
+
     if(!this.active)
         return;
 
@@ -38,6 +45,9 @@ triggerPad.prototype.deactivate = function()
 
 triggerPad.prototype.toggle = function()
 {
+    if(this.destroyed)
+        return;
+
     this.active = !this.active;
     this.image = this.active ? images.active_pad : images.inactive_pad;
 
@@ -59,11 +69,15 @@ triggerPad.prototype.getCenterY = function()
 
 triggerPad.prototype.draw = function()
 {
-    ctx.drawImage(this.image, this.x, this.y);
+    if(!this.destroyed)
+        ctx.drawImage(this.image, this.x, this.y);
 }
 
 triggerPad.prototype.canTouch = function(collisions)
 {
+    if(this.destroyed)
+        return false;
+
     for(var i = 0; i < collisions.length; i++){
         if(this.x < collisions[i][0] && this.x + TILE_SIZE > collisions[i][0] && this.y < collisions[i][1] && this.y + TILE_SIZE > collisions[i][1])
         return true;
@@ -75,6 +89,7 @@ triggerPad.prototype.canTouch = function(collisions)
 triggerPad.prototype.getNearestTriggerable = function()
 {
    var nearest = -1;
+   if(gameState.level)
    for(var i = 0; i < gameState.level.triggerable.length; i++)
    {
        if(nearest == -1) {
@@ -91,7 +106,11 @@ triggerPad.prototype.getNearestTriggerable = function()
 
 triggerPad.prototype.getDistance = function(x,y)
 {
-
     return (Math.pow(x - this.getCenterX(), 2) + Math.pow(y - this.getCenterY(), 2));
 
+}
+
+triggerPad.prototype.destroy = function()
+{
+    this.destroyed = true;
 }
