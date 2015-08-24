@@ -32,7 +32,6 @@ triggerPad.prototype.deactivate = function()
     if(!this.active)
         return;
 
-    console.log("DEACT");
     this.active = false;
     this.image = images.inactive_pad;
 

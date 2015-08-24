@@ -6,7 +6,7 @@ function getNextLevel()
     var val = nextLevel;
     nextLevel++;
 
-    if(nextLevel > NUM_LEVELS - 1)
+    if(val > NUM_LEVELS - 1)
         return null;
 
     return val;

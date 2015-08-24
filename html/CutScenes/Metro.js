@@ -21,6 +21,9 @@ function MetroCutScene()
         this.minutes = "0" + this.minutes;
 
     this.level = getNextLevel();
+    if(this.level == null)
+        this.stop();
+
     this.levelName = names[this.level];
 }
 

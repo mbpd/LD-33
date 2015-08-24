@@ -9,7 +9,6 @@ CutSceneState.prototype.render = function()
     this.cutScene.render();
     if(this.cutScene.over)
     {
-        console.log(this.tt);
         ctx.globalAlpha = this.tt; 
         ctx.fillStyle = "#000000";
         ctx.fillRect(0, 0, width, height);
@@ -20,11 +19,14 @@ CutSceneState.prototype.render = function()
 
 CutSceneState.prototype.tick = function()
 {
-    this.cutScene.tick();
-    if(this.cutScene.over)
-        this.tt += 0.005;
+    if(this.cutScene.level != null)
+    {
+        this.cutScene.tick();
+        if(this.cutScene.over)
+            this.tt += 0.005;
+    }
 
-    if(this.tt > 1)
+    if(this.tt > 1 || (this.cutScene.level == null && this.cutScene.over))
     {
         this.cutScene.switchState();
     }
@@ -39,5 +41,4 @@ CutSceneState.prototype.keyboardHandler = function(evt)
 }
 
 CutSceneState.prototype.mouseHandler = function(evt)
-{
-}
+{}
