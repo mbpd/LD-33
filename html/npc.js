@@ -132,6 +132,9 @@ NPC.prototype.getCollisions = function()
 
 NPC.prototype.kill = function()
 {
-    dead = true;
-    addKill();
+    if(!this.dead)
+    {
+        this.dead = true;
+        addKill();
+    }
 }

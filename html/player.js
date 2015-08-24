@@ -118,5 +118,6 @@ Player.prototype.getCollisions = function()
 
 Player.prototype.kill = function()
 {
-    this.dead = true;
+    if(!this.dead)
+        this.dead = true;
 }
