@@ -14,11 +14,13 @@ WinGame.prototype.render = function()
     ctx.font = "50px Monospace";
     ctx.textAlign = "center";
 
-    ctx.fillText("Win", width/2, 240);
+    ctx.fillText("Congratulations!", width/2, 240);
 
     ctx.font = "30px Monospace";
-    ctx.fillText("You Monster!", width/2, 240 + 60 + 40);
-    ctx.fillText("You have killed " + killcount + " (" + killcount*100/maxKills + "%) innocent people!", width/2, 240 + 60 + 80);
+    ctx.fillText("You have put an end", width/2, 240 + 60 + 40);
+    ctx.fillText("to the world's most EVIL companies", width/2, 240 + 60 + 80);
+    ctx.fillText("At least until the next hour,", width/2, 240 + 60 + 120);
+    ctx.fillText("When the backup servers turn on.", width/2, 240 + 60 + 160);
 
 
 }
