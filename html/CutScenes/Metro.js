@@ -26,7 +26,7 @@ function MetroCutScene()
 
 MetroCutScene.prototype.render = function ()
 {
-    if(this.level){
+    if(this.level != null){
         for(var i = 0; i < 7; i++) 
             ctx.drawImage(this.background, 0, Math.round((this.y%100)-100 + i * 100));
 
@@ -56,7 +56,7 @@ MetroCutScene.prototype.render = function ()
 
 MetroCutScene.prototype.tick = function() 
 {
-    if(this.level) {
+    if(this.level != null) {
         var t = Math.pow(this.counter, 5)/10;
         this.y = (Math.pow((1 + (1/t)), t)-1) * this.DIST / (Math.E-1);
         this.counter += 0.01;
@@ -73,7 +73,7 @@ MetroCutScene.prototype.stop = function()
 
 MetroCutScene.prototype.switchState = function()
 {
-    if(this.level)
+    if(this.level != null)
         switchState(new MainGameState(new Level(tilemaps[this.level],markers[this.level]))); 
     else
         switchState(new CutSceneState(new WinGame()));
