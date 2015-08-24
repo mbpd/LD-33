@@ -6,7 +6,8 @@ function GuardCatchNPCScript(level)
     this.ALERT_OFFSET = -100;
 
     this.MIN_DISTANCE = Math.pow(4, 2);
-    this.MAX_DISTANCE = Math.pow(200, 2);
+    this.MAX_START_DISTANCE = Math.pow(200, 2);
+    this.MAX_STOP_DISTANCE = Math.pow(800, 2);
 }
 
 GuardCatchNPCScript.prototype.draw = function(npc)
@@ -23,7 +24,7 @@ GuardCatchNPCScript.prototype.tick = function(npc)
 
     if(!this.following)
     {
-        if(dist < this.MAX_DISTANCE)
+        if(dist < this.MAX_START_DISTANCE)
         {
             this.following = true;
             this.target = this.level.player;
@@ -32,7 +33,7 @@ GuardCatchNPCScript.prototype.tick = function(npc)
 
     if(this.following)
     {
-        if(dist > this.MAX_DISTANCE)
+        if(dist > this.MAX_STOP_DISTANCE)
         {
             this.following = false;
             return;
