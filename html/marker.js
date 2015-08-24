@@ -18,7 +18,8 @@ C4Marker.prototype.canUse = function(x, y)
 
 C4Marker.prototype.use = function(level)
 {
-    level.startC4Timer();
+    if(level.c4Timer === undefined && !level.c4Exploded)
+        level.startC4Timer();
 }
 
 C4Marker.prototype.getCenterX = function()
