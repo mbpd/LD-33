@@ -1,6 +1,18 @@
 var messages = {
-0: ["This is a test message!", "Multi line test!", "WOOOO!"],
-1: ["KEK ANOTHER COMPUTER", "HAHA"],
+0: ["RIP Steve Jobs"],
+1: ["Are there any", "apples around here?"],
+2: ["You should be able to", "leave the facilities", "by subway.", "", "Probably."],
+3: ["Should skype be", "an annoying always on", "piece of software?", "", "Absolutely."],
+4: ["Our chinese servers", "are running out of", "HDD space"],
+5: ["Notice:", "We are now part of", "Microsoft Corporation"],
+6: ["goodsimao: call me", "Cardoso: no", "goodsimao: CALL ME", "Rufus: 1v1 me"],
+7: ["hotbab69: hey baby add me", "sugardaddy29: ok", "hotbab69: what u up to?"],
+8: ["Do we continue", "logging data", "from the chinese people?", "", "Yes."],
+9: ["What about Linux support?", "", "Never.", "", "Okay...", "Also it's GNU/Linux"],
+10: ["Is surveillance on", "such a large scale", "even acceptable?", "", "Of course."],
+11: ["THERE IS NO", "MICROPHONE PLUGGED IN", "", "HOPEFULLY.", "", "YOU SHOULD CHECK."],
+12: ["Should we ever change", "our logo?", "", "Nah."],
+13: ["I'M ABOUT TO", "__MURDER__", "YOU", "IF I HEAR THAT", "STUPID RINGTONE", "AGAIN"]
 }
 
 function Computer(x, y, message_id)
