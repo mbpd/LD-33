@@ -4,7 +4,7 @@ var currentMusicName = null;
 
 function playMusic(musicName)
 {
-    if(currentMusic && currentMusic.stop)
+    if(currentMusic && currentMusic.pause)
         currentMusic.pause();
 
     currentMusic = new Audio(musicName);
