@@ -1,7 +1,7 @@
 function CutSceneState(cutScene)
 {
     this.cutScene = cutScene;
-    this.tt = 1;
+    this.tt = 0;
 }
 
 CutSceneState.prototype.render = function()
@@ -9,6 +9,7 @@ CutSceneState.prototype.render = function()
     this.cutScene.render();
     if(this.cutScene.over)
     {
+        console.log(this.tt);
         ctx.globalAlpha = this.tt; 
         ctx.fillStyle = "#000000";
         ctx.fillRect(0, 0, width, height);
@@ -26,21 +27,18 @@ CutSceneState.prototype.tick = function()
     if(this.tt > 1)
     {
         var level = getNextLevel();
-        switchState(new MainGameState(new Level(tilemaps[level], markers[level]))); 
+        this.cutScene.switchState(level);
     }
 }
 
 
 CutSceneState.prototype.keyboardHandler = function(evt)
 {
-
     //Space or Enter
     if(evt.data == 32 || evt.data == 13)
         this.cutScene.stop();
-
 }
 
 CutSceneState.prototype.mouseHandler = function(evt)
 {
-
 }

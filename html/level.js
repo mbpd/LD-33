@@ -3,6 +3,8 @@ function Level(tilemap, markers)
     this.tilemap = tilemap;
     this.tilemap.prerender();
 
+    this.tt = 0;
+
     this.drawables = [];
 
     this.people = [];
@@ -130,6 +132,15 @@ Level.prototype.draw = function()
         this.drawables[i].draw();
     }
     ctx.restore();
+
+    if(this.getPlayer().dead)
+    {
+
+        ctx.globalAlpha = this.tt;
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0,0,width,height);
+
+    }
 }
 
 Level.prototype.addNPC = function(npc)
@@ -155,6 +166,13 @@ Level.prototype.addTriggerable = function(triggerable)
 
 Level.prototype.tick = function()
 {
+    if(this.getPlayer().dead){
+        this.tt += 0.0030;
+
+        if(this.tt > 1)
+            switchState(new CutSceneState(new DeathCutScene()));
+    }
+
     if(this.C4Timer)
         this.C4Timer--;
 

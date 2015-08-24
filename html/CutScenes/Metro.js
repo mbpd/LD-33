@@ -1,9 +1,9 @@
-function MetroCutScene(metro, station, background, light)
+function MetroCutScene()
 {
-    this.metro = metro;
-    this.station = station;
-    this.background = background;
-    this.light = light;
+    this.metro = images.metro;
+    this.station = images.station;
+    this.background = images.background;
+    this.light = images.light;
 
     this.over = false;
 
@@ -76,7 +76,10 @@ MetroCutScene.prototype.tick = function()
 
 MetroCutScene.prototype.stop = function()
 {
-
     this.over = true;
+}
 
+MetroCutScene.prototype.switchState = function(level)
+{
+    switchState(new MainGameState(new Level(tilemaps[level],markers[level]))); 
 }
