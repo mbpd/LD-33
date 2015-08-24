@@ -44,7 +44,8 @@ SteelDoor.prototype.toggle = function()
 
 SteelDoor.prototype.draw = function ()
 {
-   ctx.drawImage(this.image, this.drawX, this.drawY); 
+    if(!this.destroyed)
+        ctx.drawImage(this.image, this.drawX, this.drawY); 
 }
 
 SteelDoor.prototype.getCenterX = function()
@@ -59,5 +60,13 @@ SteelDoor.prototype.getCenterY = function()
 
 SteelDoor.prototype.getCollisionBox = function()
 {
+    if(this.destroyed)
+        return null;
+
     return (this.triggered ? null : this.collisionBox);
+}
+
+SteelDoor.prototype.destroy = function()
+{
+    this.destroyed = true;
 }

@@ -9,7 +9,8 @@ function C4Marker(x, y)
 
 C4Marker.prototype.draw = function()
 {
-    ctx.drawImage(images.mark_c4, this.x, this.y);
+    if(!gameState.level.c4Exploded)
+        ctx.drawImage(images.mark_c4, this.x, this.y);
 }
 
 C4Marker.prototype.canUse = function(x, y)

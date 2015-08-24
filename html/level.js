@@ -203,7 +203,17 @@ Level.prototype.tick = function()
                 alivePeople.push(person);
         }
 
-        this.people = alivePeople;
+        // kill everything that can be seen
+        for(var i = 0; i < this.drawables.length; i++)
+        {
+            var obj = this.drawables[i];
+            var dist = Math.pow(obj.x - C4_x, 2) + Math.pow(obj.y - C4_y, 2);
+
+            // ... in range
+            if(dist < C4_KILL_DISTANCE && obj.destroy)
+                obj.destroy();
+        }
+
         this.c4Exploded = true;
     }
 

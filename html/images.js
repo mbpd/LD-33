@@ -28,6 +28,7 @@ var imagesToLoad = [
     "table_up",
     "table_down",
     "death_screen",
+    "burn0",
 ]
 
 var images = {};

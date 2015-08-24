@@ -31,7 +31,8 @@ Door.prototype.generateImage = function()
 
 Door.prototype.draw = function()
 {
-    ctx.drawImage(this.img, this.x + this.ox, this.y + this.oy);
+    if(!this.destroyed)
+        ctx.drawImage(this.img, this.x + this.ox, this.y + this.oy);
 }
 
 Door.prototype.canUse = function(x, y)
@@ -59,8 +60,13 @@ Door.prototype.getCenterY = function()
 
 Door.prototype.getCollisionBox = function()
 {
-    if(this.open)
+    if(this.open || this.destroyed)
         return null;
     else
         return this.collisionBox;
+}
+
+Door.prototype.destroy = function()
+{
+    this.destroyed = true;
 }

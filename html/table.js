@@ -29,10 +29,18 @@ Table.prototype.generateImage = function()
 
 Table.prototype.draw = function()
 {
-    ctx.drawImage(this.img, this.x + this.ox, this.y + this.oy);
+    if(!this.destroy)
+        ctx.drawImage(this.img, this.x + this.ox, this.y + this.oy);
 }
 
 Table.prototype.getCollisionBox = function()
 {
+    if(this.destroyed)
+        return null;
     return this.collisionBox;
+}
+
+Table.prototype.destroy = function()
+{
+    this.destroyed = true;
 }

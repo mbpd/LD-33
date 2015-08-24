@@ -21,4 +21,15 @@ Explosion.prototype.draw = function()
     ctx.globalAlpha = factor;
     ctx.drawImage(images.explosion, this.x - size/2, this.y - size/2, size, size);
     ctx.restore();
+
+    var BURN_COUNT = 50;
+    for(var i = 0; i < BURN_COUNT; i++)
+    {
+        var angle = Math.random() * 2 * Math.PI;
+        var length = size/2 + 50 * Math.random();
+        var x = this.x + length * Math.cos(angle);
+        var y = this.y + length * Math.sin(angle);
+
+        gameState.level.tilemap.prerender_ctx.drawImage(images.burn0, x, y);
+    }
 }

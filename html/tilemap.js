@@ -21,12 +21,12 @@ TileMap.prototype.prerender = function()
     this.rendered_image.width = this.pixel_width;
     this.rendered_image.height = this.pixel_height;
 
-    var prerender_ctx = this.rendered_image.getContext("2d");
+    this.prerender_ctx = this.rendered_image.getContext("2d");
     for(var y = 0; y < this.height; y++)
     for(var x = 0; x < this.width; x++)
     {
         var tile_i = this.data[x + this.width * y];
-        prerender_ctx.drawImage(tiles[tile_i], x * TILE_SIZE, y * TILE_SIZE);
+        this.prerender_ctx.drawImage(tiles[tile_i], x * TILE_SIZE, y * TILE_SIZE);
     }
 }
 
