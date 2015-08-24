@@ -17,8 +17,8 @@ EndGame.prototype.render = function()
     ctx.fillText("End", width/2, 242);
 
     ctx.font = "30px Monospace";
-    ctx.fillText("You're a Monster", width/2, 240 + 60 + 40);
-
+    ctx.fillText("You're a Monster!", width/2, 240 + 60 + 40);
+    ctx.fillText("You have killed " + killcount + " (" + killcount*100/maxKills + "%) innocent people!", width/2, 240 + 60 + 80);
 }
 
 EndGame.prototype.tick = function()

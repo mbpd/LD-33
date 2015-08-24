@@ -1,35 +1,37 @@
 function CreditsCutScene()
 {
 
+    this.video = document.createElement("video");
+    this.video.src = "stallman.webm";
+    this.video.setAttribute("width", "800");
+    this.video.setAttribute("height", "600");
+    this.video.play();
+
     this.level = 0;
     this.start = new Date().getTime();
     this.delta = 0;
     this.over = false;
-    this.background = images.death_screen;
 
 }
 
 CreditsCutScene.prototype.render = function()
 {
-    ctx.drawImage(this.background, 0, 0);
-    ctx.fillStyle = "#00FF00";
-    ctx.font = "50px MonoSpace";
-    ctx.textAlign = "center";
-
-    ctx.fillText("Credits", width/2, 242);
+    ctx.drawImage(this.video, 0, 0, canvas.width, canvas.height);
 }
 
 CreditsCutScene.prototype.tick = function()
 {
 
     this.delta = new Date().getTime() - this.start;
-    if(this.delta > 4000)
+    console.log(this.delta);
+    if(this.delta > 151000)
         this.stop();
 }
 
 CreditsCutScene.prototype.stop = function()
 {
     this.over = true;
+    this.video.pause();
 }
 
 CreditsCutScene.prototype.switchState = function()
