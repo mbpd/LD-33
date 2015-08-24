@@ -1,5 +1,6 @@
 function DeathCutScene()
 {
+    this.level = 0;
     this.start = new Date().getTime();
     this.delta = 0;
     this.over = false;
