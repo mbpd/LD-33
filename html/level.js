@@ -78,6 +78,18 @@ function Level(tilemap, markers)
             var steeldoor = new SteelDoor(markerX, markerY);
             this.addTriggerable(steeldoor);
         }
+        else if(markerType == "TABLE_UP")
+        {
+            var t = new Table(markerX, markerY, "up");
+            this.drawables.push(t);
+            this.collidables.push(t);
+        }
+        else if(markerType == "TABLE_DOWN")
+        {
+            var t = new Table(markerX, markerY, "down");
+            this.drawables.push(t);
+            this.collidables.push(t);
+        }
     }
 
     this.cursor = images.cursor_default;

@@ -25,6 +25,8 @@ var imagesToLoad = [
     "guard_left",
     "guard_right",
     "explosion",
+    "table_up",
+    "table_down",
 ]
 
 var images = {};
