@@ -24,13 +24,13 @@ function NPC(x, y, left_image, right_image, NPCScript)
 
 NPC.prototype.draw = function()
 {
+    var jumpHeight = 0;
     if(this.dead)
     {
         ctx.drawImage(images.body, this.x - this.image.width/2, this.y - this.image.height/2 + this.CHAR_HEIGHT - jumpHeight);
     }
     else
     {
-        var jumpHeight = 0;
         if(this.jumping)
         {
             var jump = Math.round((currentFrame+this.jumpOffset)/7) % 3 == 0;
@@ -49,6 +49,7 @@ NPC.prototype.tick = function()
 {
     if(this.dead)
         return;
+
 
     this.script.tick(this);
     if(this.x != this.valid_x || this.y != this.valid_y)
