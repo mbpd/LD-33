@@ -5,6 +5,9 @@ function EndGame()
     this.delta = 0;
     this.over = false;
     this.background = images.death_screen;
+
+    this.kc = killcount;
+    killcount = 0;
 }
 
 EndGame.prototype.render = function()
@@ -17,21 +20,21 @@ EndGame.prototype.render = function()
     ctx.fillText("You are the Monster", width/2, 242);
 
     var description = "";
-    if(killcount == 0)
+    if(this.kc == 0)
         description = "You don't seem that monstrous.";
-    else if(killcount < 5)
+    else if(this.kc < 5)
         description = "You killed some people.";
-    else if(killcount < 10)
+    else if(this.kc < 10)
         description = "Getting there.";
-    else if(killcount < 15)
+    else if(this.kc < 15)
         description = "Why don't you try killing some more?";
-    else if(killcount < 20)
+    else if(this.kc < 20)
         description = "Woah, you're totally a monster now!";
-    else if(killcount < 30)
+    else if(this.kc < 30)
         description = "Tell you what, you're a very bad monster!";
-    else if(killcount < 40)
+    else if(this.kc < 40)
         description = "A very, very, very, bad monster!";
-    else if(killcount < 48)
+    else if(this.kc < 48)
         description = "SOOO CLOOOSE";
     else
         description = "PERFECT SCORE!";
@@ -40,12 +43,12 @@ EndGame.prototype.render = function()
     ctx.fillText(description, width/2, 242 + 60);
 
     description = "";
-    if(killcount >= 15)
-        description = (maxKills - killcount) + " people left.";
+    if(this.kc >= 15)
+        description = (maxKills - this.kc) + " people left.";
 
     ctx.fillText(description, width/2, 242 + 60 + 30);
 
-    if(killcount == maxKills)
+    if(this.kc == maxKills)
         description = "You killed everyone!";
 
     ctx.fillText(description, width/2, 242 + 60 + 30 + 30);
@@ -61,7 +64,6 @@ EndGame.prototype.tick = function()
 
 EndGame.prototype.stop = function()
 {
-    killcount = 0;
     this.over = true;
 }
 
