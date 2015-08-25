@@ -21,6 +21,11 @@ function loadNextTile()
     img.onload = loadNextTile;
     img.src = BASE_TILE_URL + (current_tile-1) + ".png";
 
+    ctx.clearRect(0, 0, 800, 600);
+    ctx.font = "20px Monospace";
+    ctx.fillStyle = "#00FF00";
+    ctx.fillText("Loading tiles... " + (current_tile - 1) + "/" + NUMBER_OF_TILES, 50, 50);
+
     tiles.push(img);
 }
 

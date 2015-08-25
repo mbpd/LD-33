@@ -56,6 +56,11 @@ function loadNextImage()
     img.onload = loadNextImage;
     img.src = BASE_IMAGE_URL + imagesToLoad[current_image-1] + ".png";
 
+    ctx.clearRect(0, 0, 800, 600);
+    ctx.font = "20px Monospace";
+    ctx.fillStyle = "#00FF00";
+    ctx.fillText("Loading images... " + (current_image - 1) + "/" + imagesToLoad.length, 50, 50);
+
     images[imagesToLoad[current_image-1]] = img;
 }
 
