@@ -40,14 +40,16 @@ EndGame.prototype.render = function()
 
     description = "";
     if(this.kc >= 15)
+    {
         description = (maxKills - this.kc) + " people left.";
-
-    ctx.fillText(description, width/2, 242 + 60 + 30);
+        ctx.fillText(description, width/2, 242 + 60 + 30);
+    }
 
     if(this.kc == maxKills)
+    {
         description = "You killed everyone!";
-
-    ctx.fillText(description, width/2, 242 + 60 + 30 + 30);
+        ctx.fillText(description, width/2, 242 + 60 + 30 + 30);
+    }
 }
 
 EndGame.prototype.tick = function()
