@@ -23,7 +23,6 @@ CreditsCutScene.prototype.tick = function()
 {
 
     this.delta = new Date().getTime() - this.start;
-    console.log(this.delta);
     if(this.delta > 151000)
         this.stop();
 }

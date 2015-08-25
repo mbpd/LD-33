@@ -70,7 +70,7 @@ EndGame.prototype.stop = function()
 EndGame.prototype.switchState = function()
 {
     nextLevel = 0;
-    if(killcount >= maxKills * 0.1)
+    if(this.kc >= maxKills)
         switchState(new CutSceneState(new CreditsCutScene()));
     else
         switchState(new CutSceneState(new MetroCutScene()));
