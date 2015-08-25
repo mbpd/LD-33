@@ -45,7 +45,7 @@ EndGame.prototype.render = function()
 
     ctx.font = "30px Monospace";
     ctx.fillText("You're a Monster!", width/2, 240 + 60 + 40);
-    ctx.fillText("You have killed " + killcount + " (" + killcount*100/maxKills + "%) innocent people!", width/2, 240 + 60 + 80);
+    ctx.fillText("You have killed " + killcount + " people!", width/2, 240 + 60 + 80);
 
     if(killcount == maxKills)
         description = "You killed everyone!";
