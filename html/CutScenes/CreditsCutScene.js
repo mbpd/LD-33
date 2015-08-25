@@ -13,6 +13,8 @@ function CreditsCutScene()
     this.over = false;
 
     console.log("this fixes credits in firefox, don't ask.");
+    if(currentMusic && currentMusic.pause)
+        currentMusic.pause();
 }
 
 CreditsCutScene.prototype.render = function()
