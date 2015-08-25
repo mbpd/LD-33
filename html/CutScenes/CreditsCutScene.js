@@ -12,6 +12,7 @@ function CreditsCutScene()
     this.delta = 0;
     this.over = false;
 
+    console.log("this fixes credits in firefox, don't ask.");
 }
 
 CreditsCutScene.prototype.render = function()
