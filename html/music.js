@@ -1,4 +1,4 @@
-var musicLevels = ["music/apple.ogg", "music/skype.ogg", "music/facebook.ogg"];
+var musicLevels = ["music/apple.ogg", "music/skype.ogg", "music/facebook.ogg", "music/developers.ogg"];
 var currentMusic = null;
 var currentMusicName = null;
 
