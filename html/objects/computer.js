@@ -12,7 +12,16 @@ var messages = {
 10: ["Is surveillance on", "such a large scale", "even acceptable?", "", "Of course."],
 11: ["THERE IS NO", "MICROPHONE PLUGGED IN", "", "HOPEFULLY.", "", "YOU SHOULD CHECK."],
 12: ["Should we ever change", "our logo?", "", "Nah."],
-13: ["I'M ABOUT TO", "__MURDER__", "YOU", "IF I HEAR THAT", "STUPID RINGTONE", "AGAIN"]
+13: ["I'M ABOUT TO", "__MURDER__", "YOU", "IF I HEAR THAT", "STUPID RINGTONE", "AGAIN"],
+14: ["n42k", "Male", "19 years old", "Created Stallman Quest"],
+15: ["_mbpd", "Male", "16 years old", "Created Stallman Quest"],
+16: ["The game.", "LOL"],
+17: ["Obtaining everyone's", "phone numbers"],
+18: ["Linking terrorists and FPS gamers.", "Handing info to FBI."],
+19: ["Image was banned", "for nudity."],
+20: ["Would you like to", "help me in FarmVille?"],
+21: ["<!DOCTYPE html>", "<head>", "<script src=\"track.js\">", "</script>", "..."],
+22: ["<?php", "echo 'Hello World!';", "?>"],
 }
 
 function Computer(x, y, message_id)
