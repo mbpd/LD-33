@@ -21,8 +21,6 @@ WinGame.prototype.render = function()
     ctx.fillText("to the world's most EVIL companies", width/2, 240 + 60 + 80);
     ctx.fillText("At least until the next hour,", width/2, 240 + 60 + 120);
     ctx.fillText("When the backup servers turn on.", width/2, 240 + 60 + 160);
-
-
 }
 
 WinGame.prototype.tick = function()

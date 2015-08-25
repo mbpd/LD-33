@@ -4,6 +4,9 @@ function Explosion(x, y)
     this.y = y;
     this.iFrame = currentFrame;
     this.DURATION = 45;
+    currentMusic.pause();
+    var explode = new Audio("music/explosion.ogg");
+    explode.play();
 }
 
 Explosion.prototype.draw = function()
@@ -11,7 +14,10 @@ Explosion.prototype.draw = function()
     var dif = currentFrame - this.iFrame;
 
     if(dif > this.DURATION)
+    {
+        currentMusic.pause();
         return;
+    }
 
     var factor = Math.sin(Math.PI * dif/this.DURATION);
 
