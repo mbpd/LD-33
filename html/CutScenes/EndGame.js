@@ -31,9 +31,11 @@ EndGame.prototype.render = function()
         description = "Woah, you're totally a monster now!";
     else if(killcount < 30)
         description = "Tell you what, you're a very bad monster!";
-    else if(killcount < 34)
+    else if(killcount < 40)
+        description = "A very, very, very, bad monster!";
+    else if(killcount < 48)
         description = "SOOO CLOOOSE";
-    else if(killcount == 34)
+    else
         description = "PERFECT SCORE!";
 
     ctx.font = "20px Monospace";
@@ -43,14 +45,12 @@ EndGame.prototype.render = function()
     if(killcount >= 15)
         description = (maxKills - killcount) + " people left.";
 
-    ctx.font = "30px Monospace";
-    ctx.fillText("You're a Monster!", width/2, 240 + 60 + 40);
-    ctx.fillText("You have killed " + killcount + " people!", width/2, 240 + 60 + 80);
+    ctx.fillText(description, width/2, 242 + 60 + 30);
 
     if(killcount == maxKills)
         description = "You killed everyone!";
 
-    ctx.fillText(description, width/2, 242 + 60 + 30);
+    ctx.fillText(description, width/2, 242 + 60 + 30 + 30);
 }
 
 EndGame.prototype.tick = function()
