@@ -36,8 +36,8 @@ CutSceneState.prototype.tick = function()
 CutSceneState.prototype.keyboardHandler = function(evt)
 {
     //Space or Enter
-    if(evt.data == 32 || evt.data == 13)
-        this.cutScene.stop();
+    //if(evt.data == 32 || evt.data == 13)
+    //    this.cutScene.stop();
 }
 
 CutSceneState.prototype.mouseHandler = function(evt)
