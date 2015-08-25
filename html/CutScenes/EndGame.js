@@ -20,12 +20,8 @@ EndGame.prototype.render = function()
     ctx.fillText("You are the Monster", width/2, 242);
 
     var description = "";
-    if(this.kc == 0)
+    if(this.kc < 3)
         description = "You don't seem that monstrous.";
-    else if(this.kc < 5)
-        description = "You killed some people.";
-    else if(this.kc < 10)
-        description = "Getting there.";
     else if(this.kc < 15)
         description = "Why don't you try killing some more?";
     else if(this.kc < 20)
