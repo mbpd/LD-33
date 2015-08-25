@@ -1,5 +1,5 @@
 var nextLevel = 0;
-var NUM_LEVELS = 3;
+var NUM_LEVELS = 4;
 
 function getNextLevel()
 {
